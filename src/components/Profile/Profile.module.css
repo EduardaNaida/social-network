@@ -1,0 +1,8 @@
+.profile {
+    grid-area: p;
+    background-color: rgba(48, 99, 199, 0.84);
+}
+
+.item img {
+    width: 500px;
+}
