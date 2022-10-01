@@ -2,3 +2,6 @@
     grid-area: p;
     background-color: rgba(48, 99, 199, 0.84);
 }
+.item{
+    padding-top: 10px;
+}

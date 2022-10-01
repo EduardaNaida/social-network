@@ -2,3 +2,7 @@
     grid-area: p;
     background-color: rgba(48, 99, 199, 0.84);
 }
+
+.posts {
+    padding: 10px;
+}
