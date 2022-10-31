@@ -8,14 +8,19 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {RootStateType} from '../src/redux/state'
+import {ActionsType, StoreType} from '../src/redux/state'
 
-
-type AppStateType = {
-    state: RootStateType
+export type AppStateType = {
+    store: StoreType
+    dispatch: (action: ActionsType) => void
+    //state: RootStateType
+    // addPostCallback: (postMessage: string) => void
+    // updateNewPostText: (newTextValue: string) => void
 }
 
 function App(props: AppStateType) {
+    const state = props.store.getState();
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -23,8 +28,16 @@ function App(props: AppStateType) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData} messageData={props.state.dialogsPage.messageData}/>}/>
-                    <Route path={'/profile'} render={() => <Profile postData={props.state.profilePage.postData}/>}/>
+                           render={() => <Dialogs
+                               dialogsData={state.dialogsPage.dialogsData}
+                               messageData={state.dialogsPage.messageData}/>}/>
+                    <Route path={'/profile'} render={() => <Profile
+                        postData={state.profilePage.postData}
+                        /*addPostCallback={props.store.addPost.bind(props.store)}*/
+                        newTextValue={state.profilePage.newTextValue}
+                        dispatch={props.dispatch}
+                        /*updateNewPostText={props.store.updateNewPostText.bind(props.store)}*/
+                    />}/>
                     <Route path={'/news'} component={News}/>
                     <Route path={'/music'} component={Music}/>
                     <Route path={'/settings'} component={Settings}/>
