@@ -30,7 +30,10 @@ function App(props: AppStateType) {
                     <Route path={'/dialogs'}
                            render={() => <Dialogs
                                dialogsData={state.dialogsPage.dialogsData}
-                               messageData={state.dialogsPage.messageData}/>}/>
+                               messageData={state.dialogsPage.messageData}
+                           newMessage={state.dialogsPage.newMessage}
+                           dispatch={props.dispatch}
+                           />}/>
                     <Route path={'/profile'} render={() => <Profile
                         postData={state.profilePage.postData}
                         /*addPostCallback={props.store.addPost.bind(props.store)}*/
