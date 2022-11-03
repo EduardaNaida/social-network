@@ -2,7 +2,7 @@ import './index.css';
 import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {store} from "./redux/state";
+import {store} from "./redux/store";
 
 
 export const render = () => {
@@ -15,4 +15,7 @@ export const render = () => {
 
 render();
 
-store.subscribe(render);
+store.subscribe( () => {
+    let state = store.getState();
+    render();
+});

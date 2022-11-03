@@ -5,10 +5,10 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
     ActionsType,
-    AddMessage,
     DialogsData,
-    MessageData, NewMessage,
-} from "../../redux/state";
+    MessageData,
+} from "../../redux/store";
+import {AddMessage, NewMessage} from "../../redux/dialogsReducer";
 
 type DialogsType = {
     dialogsData: DialogsData[]

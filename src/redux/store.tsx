@@ -1,3 +1,7 @@
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
+
 export type DialogsPageType = {
     messageData: Array<MessageData>
     dialogsData: Array<DialogsData>
@@ -33,10 +37,6 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-const ADD_POST = 'ADD-POST';
-const NEW_POST_TEXT = 'NEW-POST-TEXT';
-const ADD_MESSAGE = "ADD-MESSAGE";
-const NEW_MESSAGE = "NEW-MESSAGE";
 
 // export let state: RootStateType = {
 //     profilePage: {
@@ -145,52 +145,38 @@ export let store: StoreType = {
             this._callSubscriber()
         },*/
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost: PostData = {
-                name: 'Alex',
-                message: action.postMessage,
-                likes: '10',
-            }
-            this._state.profilePage.postData.push(newPost)
-            this._state.profilePage.newTextValue = '';
-            this._callSubscriber()
-        } else if (action.type === NEW_POST_TEXT) {
-            this._state.profilePage.newTextValue = action.newText;
-            this._callSubscriber()
-        } else if (action.type === ADD_MESSAGE) {
-            const newMessage: MessageData = {
-                message: action.postMessage,
-                id: 10
-            }
-            this._state.dialogsPage.messageData.push(newMessage)
-            this._state.dialogsPage.newMessage = '';
-            this._callSubscriber()
-        } else if (action.type === NEW_MESSAGE){
-            this._state.dialogsPage.newMessage = action.newText;
-            this._callSubscriber()
-        }
-    }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber()
+        /*
+         if (action.type === ADD_POST) {
+                    const newPost: PostData = {
+                        name: 'Alex',
+                        message: action.postMessage,
+                        likes: '10',
+                    }
+                    this._state.profilePage.postData.push(newPost)
+                    this._state.profilePage.newTextValue = '';
+                    this._callSubscriber()
+                } else if (action.type === NEW_POST_TEXT) {
+                    this._state.profilePage.newTextValue = action.newText;
+                    this._callSubscriber()
+                } else if (action.type === ADD_MESSAGE) {
+                    const newMessage: MessageData = {
+                        message: action.postMessage,
+                        id: 10
+                    }
+                    this._state.dialogsPage.messageData.push(newMessage)
+                    this._state.dialogsPage.newMessage = '';
+                    this._callSubscriber()
+                } else if (action.type === NEW_MESSAGE){
+                    this._state.dialogsPage.newMessage = action.newText;*/
 
 }
 
-export const AddPostAC = (newTextValue: string): AddPostActionType => ({
-    type: ADD_POST,
-    postMessage: newTextValue
-})
-
-export const NewPostText = (newText: string): ChangeNewTextType => ({
-    type: NEW_POST_TEXT,
-    newText: newText
-})
-
-export const AddMessage = (newText: string): AddMessageActionType => ({
-    type: ADD_MESSAGE,
-    postMessage: newText
-})
-export const NewMessage = (newText: string): NewMessageActionType => ({
-    type: NEW_MESSAGE,
-    newText: newText
-})
+}
 
 // export const addPost = (postMessage: string) => {
 //     const newPost: PostData = {
