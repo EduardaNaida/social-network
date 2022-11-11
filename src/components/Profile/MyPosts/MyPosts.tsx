@@ -3,21 +3,22 @@ import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 import {ActionsType, ProfilePageType, StoreType} from "../../../redux/store";
 import {AddPostAC, NewPostText} from "../../../redux/profileReducer";
+import {ProfilePropsType} from "./MyPostsContainer";
 
-type MyPostPropsType = {
-    // postData: PostData[]
-    profilePage: ProfilePageType
-    addPostCallback: (postMessage: string) => void
-    updateNewPostText: (newTextValue: string) => void
-}
-
-
-export const MyPosts = (props: MyPostPropsType) => {
+// type MyPostPropsType = {
+//     // postData: PostData[]
+//     profilePage: ProfilePageType
+//     addPostCallback: (postMessage: string) => void
+//     updateNewPostText: (newTextValue: string) => void
+// }
 
 
-    let getPostData = props.profilePage.postData.map((ev) => {
+export const MyPosts = (props: ProfilePropsType) => {
+
+
+    let getPostData = props.profilePage.postData.map((ev, id) => {
         return (
-            <Post name={ev.name} message={ev.message} likes={ev.likes}/>
+            <Post key={id} name={ev.name} message={ev.message} likes={ev.likes}/>
         )
     })
 

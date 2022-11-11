@@ -43,18 +43,24 @@ const initialState = {
 //export type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
+
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageData = {
                 message: action.postMessage,
                 id: 10
             }
-            state.messageData.push(newMessage)
-            state.newMessage = '';
-            return {...state};
+            return  {
+                ...state,
+                newMessage: '',
+                messageData: [...state.messageData, newMessage]
+            }
         case NEW_MESSAGE:
-            state.newMessage = action.newText;
-            return {...state};
+            return {
+                ...state,
+                newMessage: action.newText
+            }
+
         default:
             return state;
     }

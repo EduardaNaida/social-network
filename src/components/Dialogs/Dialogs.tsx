@@ -1,10 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 
-import {AddMessage, DialogsPageType, NewMessage} from "../../redux/dialogsReducer";
 import {DialogsPropsType} from "./DialogsContainer";
 
 // type DialogsType = {
@@ -17,12 +15,12 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     const dialog = props.dialogsPage.dialogsData.map((ev) => {
         return (
-            <DialogItem id={ev.id} name={ev.name}/>
+            <DialogItem key={ev.id} id={ev.id} name={ev.name}/>
         )
     })
     const message = props.dialogsPage.messageData.map((ev) => {
         return (
-            <Message id={ev.id} message={ev.message}/>
+            <Message key={ev.id} id={ev.id} message={ev.message}/>
         )
     })
 

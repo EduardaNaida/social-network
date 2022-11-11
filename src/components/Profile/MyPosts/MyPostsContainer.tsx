@@ -1,7 +1,5 @@
-import React, {ChangeEvent} from 'react';
-import s from './MyPosts.module.css';
-import {Post} from "./Post/Post";
-import {ActionsType, RootStateType, StoreType} from "../../../redux/store";
+import React from 'react';
+import {RootStateType} from "../../../redux/store";
 import {AddPostAC, NewPostText, ProfilePageType} from "../../../redux/profileReducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
@@ -52,7 +50,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return{
+    return {
         addPostCallback: (newTextValue: string) => {
             dispatch(AddPostAC(newTextValue));
         },
