@@ -2,7 +2,7 @@ import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
-export type DialogsPageType = {
+type DialogsPageType = {
     messageData: Array<MessageData>
     dialogsData: Array<DialogsData>
     newMessage: string
@@ -13,18 +13,17 @@ export type ProfilePageType = {
     newTextValue: string
 }
 
-export type PostData = {
+type PostData = {
     name: string
     message: string
     likes: string
 }
-
-export type MessageData = {
+type MessageData = {
     id: number
     message: string
 }
 
-export type DialogsData = {
+type DialogsData = {
     id: number
     name: string
 }

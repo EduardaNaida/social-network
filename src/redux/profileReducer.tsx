@@ -1,16 +1,29 @@
 import React from 'react';
-import {ActionsType, AddPostActionType, ChangeNewTextType, MessageData, PostData, ProfilePageType} from "./store";
+import {ActionsType, AddPostActionType, ChangeNewTextType} from "./store";
+import {ProfilePropsType} from "../components/Profile/MyPosts/MyPostsContainer";
 
 const ADD_POST = 'ADD-POST';
 const NEW_POST_TEXT = 'NEW-POST-TEXT';
 
-const initialState = {
+export type PostData = {
+    name: string
+    message: string
+    likes: string
+}
+export type ProfilePageType = {
+    postData: Array<PostData>
+    newTextValue: string
+}
+
+const initialState: ProfilePageType = {
     postData: [
         {name: 'Eduarda', message: 'Hello', likes: '15'},
         {name: 'Artiom', message: 'Good morning', likes: '20'}
     ],
     newTextValue: ''
 }
+
+// export type InitialStateType = typeof initialState
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
     switch (action.type){
@@ -22,10 +35,10 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             }
             state.postData.push(newPost)
             state.newTextValue = '';
-            return state;
+            return {...state};
         case NEW_POST_TEXT:
             state.newTextValue = action.newText;
-            return state;
+            return {...state};
         default:
             return state;
     }

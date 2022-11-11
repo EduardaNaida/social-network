@@ -2,20 +2,24 @@ import './index.css';
 import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {store} from "./redux/store";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
+import {store} from "./redux/redux-store";
 
 
-export const render = () => {
-    ReactDOM.render(
-        <App /*state={store.getState()}*/
-             store={store} dispatch={store.dispatch.bind(store)}/>,
-        document.getElementById('root')
-    );
-};
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
 
-render();
 
-store.subscribe( () => {
-    let state = store.getState();
-    render();
-});
+// render();
+//
+// store.subscribe(() => {
+//     let state = store.getState();
+//     render();
+// });

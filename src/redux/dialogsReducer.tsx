@@ -1,8 +1,28 @@
 import React from 'react';
-import {ActionsType, AddMessageActionType, DialogsPageType, MessageData, NewMessageActionType} from "./store";
+import {ActionsType, AddMessageActionType, NewMessageActionType} from "./store";
+
+export type dialogsReducersActionType =
+    | ReturnType<typeof AddMessage>
+    | ReturnType<typeof NewMessage>
 
 const ADD_MESSAGE = "ADD-MESSAGE";
 const NEW_MESSAGE = "NEW-MESSAGE";
+
+export type MessageData = {
+    id: number
+    message: string
+}
+
+export type DialogsData = {
+    id: number
+    name: string
+}
+
+export type DialogsPageType = {
+    messageData: Array<MessageData>
+    dialogsData: Array<DialogsData>
+    newMessage: string
+}
 
 const initialState = {
     dialogsData: [
@@ -20,7 +40,9 @@ const initialState = {
     newMessage: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) => {
+//export type InitialStateType = typeof initialState
+
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageData = {
@@ -29,19 +51,20 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
             }
             state.messageData.push(newMessage)
             state.newMessage = '';
-            return state;
+            return {...state};
         case NEW_MESSAGE:
             state.newMessage = action.newText;
-            return state;
+            return {...state};
         default:
             return state;
     }
 };
 
-export const AddMessage = (newText: string): AddMessageActionType => ({
-    type: ADD_MESSAGE,
-    postMessage: newText
-})
+export const AddMessage = (postMessage: string): AddMessageActionType => ({
+        type: ADD_MESSAGE,
+        postMessage: postMessage
+    } as const
+)
 export const NewMessage = (newText: string): NewMessageActionType => ({
     type: NEW_MESSAGE,
     newText: newText
