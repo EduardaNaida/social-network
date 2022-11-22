@@ -1,12 +1,12 @@
 import React from 'react';
 
 export type UsersReducersActionType =
-    | ReturnType<typeof Follow>
-    | ReturnType<typeof Unfollow>
-    | ReturnType<typeof SetUsers>
-    | ReturnType<typeof SetCurrentPage>
-    | ReturnType<typeof SetTotalCount>
-    | ReturnType<typeof SetIsFetching>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalCount>
+    | ReturnType<typeof setIsFetching>
 
 
 const FOLLOW = "FOLLOW";
@@ -89,42 +89,42 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
     }
 };
 
-export const Follow = (userID: number) => {
+export const follow = (userID: number) => {
     return {
         type: FOLLOW,
         userID: userID
     } as const
 }
 
-export const Unfollow = (userID: number) => {
+export const unfollow = (userID: number) => {
     return {
         type: UNFOLLOW,
         userID: userID
     } as const
 }
 
-export const SetUsers = (users: Array<UsersData>) => {
+export const setUsers = (users: Array<UsersData>) => {
     return {
         type: SET_USERS,
         users: users
     } as const
 }
 
-export const SetCurrentPage = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage
     } as const
 }
 
-export const SetTotalCount = (totalUsersCount: number) => {
+export const setTotalCount = (totalUsersCount: number) => {
     return {
         type: SET_TOTAL_COUNT,
         count: totalUsersCount
     } as const
 }
 
-export const SetIsFetching = (isFetching: boolean) => {
+export const setIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
