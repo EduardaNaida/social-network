@@ -4,11 +4,17 @@ export type UsersReducersActionType =
     | ReturnType<typeof Follow>
     | ReturnType<typeof Unfollow>
     | ReturnType<typeof SetUsers>
+    | ReturnType<typeof SetCurrentPage>
+    | ReturnType<typeof SetTotalCount>
+    | ReturnType<typeof SetIsFetching>
 
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 export type UsersData = {
     id: number,
@@ -18,42 +24,19 @@ export type UsersData = {
 }
 
 export type UserPropsType = {
-    users: UsersData[]
+    users: Array<UsersData>,
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
+    isFetching: boolean
 }
 
 const initialState: UserPropsType = {
-    users: [
-        // {
-        //     id: 1,
-        //     name: 'Eduarda',
-        //     followed: false,
-        //     avatar: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Artiom',
-        //     followed: true,
-        //     avatar: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Dasha',
-        //     followed: false,
-        //     avatar: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        // },
-        // {
-        //     id: 4,
-        //     name: 'Ivan',
-        //     followed: true,
-        //     avatar: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        // },
-        // {
-        //     id: 5,
-        //     name: 'Ekaterina',
-        //     followed: true,
-        //     avatar: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        // },
-    ]
+    users: [],
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state: UserPropsType = initialState, action: UsersReducersActionType): UserPropsType => {
@@ -83,7 +66,23 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users, ...state.users]
+            }
+
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_TOTAL_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.count
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state;
@@ -108,5 +107,26 @@ export const SetUsers = (users: Array<UsersData>) => {
     return {
         type: SET_USERS,
         users: users
+    } as const
+}
+
+export const SetCurrentPage = (currentPage: number) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage
+    } as const
+}
+
+export const SetTotalCount = (totalUsersCount: number) => {
+    return {
+        type: SET_TOTAL_COUNT,
+        count: totalUsersCount
+    } as const
+}
+
+export const SetIsFetching = (isFetching: boolean) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching
     } as const
 }
