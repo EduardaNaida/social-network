@@ -1,20 +1,20 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../redux/profileReducer";
 
 
-// type ProfileType = {
-//     store: StoreType
-// }
-export const Profile = () => {
+type ProfilePropsType = {
+    profile: ProfileType | null
+}
 
-    return (
+export const Profile = (props: ProfilePropsType) => {
+
+    // console.log(props.profile)
+   return <>
         <div>
-            <ProfileInfo/>
-            <MyPostsContainer //newTextValue={props.profilePage.newTextValue}
-                // postData={state.profilePage.postData}
-                // dispatch={props.store.dispatch}
-            />
+            <ProfileInfo profile={props.profile}/>
+            <MyPostsContainer/>
         </div>
-    );
+    </>;
 };

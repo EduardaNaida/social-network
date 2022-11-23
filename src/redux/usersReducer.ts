@@ -20,7 +20,8 @@ export type UsersData = {
     id: number,
     name: string
     followed: boolean
-    avatar: string
+    photos: { small: string,
+        large: string }
 }
 
 export type UserPropsType = {

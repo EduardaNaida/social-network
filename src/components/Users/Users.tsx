@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import avatar from "../../assets/images/avatar.png";
 import {UsersData} from "../../redux/usersReducer";
+import {NavLink} from "react-router-dom";
 
 export type PropsUserType = {
     usersPage: UsersData[]
@@ -28,8 +29,8 @@ const Users = (props: PropsUserType) => {
     return (
         <div>
             <div>
-                {pages.map(p => {
-                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : 'default'}
+                {pages.map((p,index) => {
+                    return <span key={index} className={props.currentPage === p ? styles.selectedPage : 'default'}
                                  onClick={(e) => {
                                      props.onPageChanged(p)
                                  }}>{p}</span>
@@ -39,11 +40,13 @@ const Users = (props: PropsUserType) => {
             USERS
             {props.usersPage.map(u =>
                 <div key={u.id}>
-                    <div>
-                        <img src={u.avatar != null ? u.avatar : avatar} alt="picture" className={styles.avatar}/>
-                    </div>
+                    <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.large : avatar} alt="picture" className={styles.avatar}/>
 
-                    <div key={u.id}>
+                    </NavLink>
+
+
+                    <div>
                         {u.followed
                             ? <button onClick={() => {
                                 props.follow(u.id)
@@ -52,7 +55,7 @@ const Users = (props: PropsUserType) => {
                                 props.unfollow(u.id)
                             }}>Unfollow</button>}
                     </div>
-                    <div key={u.id}>
+                    <div>
                         {u.name}
                     </div>
                 </div>

@@ -10,7 +10,6 @@ import {
     UsersData
 } from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloder";
@@ -60,7 +59,8 @@ export class UsersAPIComponent extends React.Component<UsersPagePropsType> {
 
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
                    usersPage={this.props.usersPage}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
