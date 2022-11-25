@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "./Users.module.css";
 import {connect} from "react-redux";
 import {
     follow,
