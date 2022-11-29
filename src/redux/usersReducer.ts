@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type UsersReducersActionType =
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
@@ -48,7 +46,7 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, followed: false}
+                        return {...u, followed: true}
                     }
                     return u
                 })
@@ -58,7 +56,7 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, followed: true}
+                        return {...u, followed: false}
                     }
                     return u
                 })
