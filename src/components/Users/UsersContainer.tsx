@@ -12,6 +12,7 @@ import {AppStateType} from "../../redux/redux-store";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloder";
+import getUsers from "../../api/api";
 
 type MapStatePropsType = {
     usersPage: UsersData[]
@@ -37,10 +38,7 @@ export class UsersAPIComponent extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-            {
-                withCredentials: true
-            })
+        getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(response.data.items);

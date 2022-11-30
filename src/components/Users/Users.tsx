@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Users.module.css";
 import avatar from "../../assets/images/avatar.png";
-import {UsersData} from "../../redux/usersReducer";
+import {unfollow, UsersData} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
