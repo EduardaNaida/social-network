@@ -6,6 +6,7 @@ const getUsers = (currentPage: number , pageSize: number ) => {
         {
             withCredentials: true
         })
+        .then(response => response.data)
 };
 
 export default getUsers;
