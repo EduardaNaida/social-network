@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {setUserData, UserDataType} from "../../redux/authReducer";
 import {Header} from "./Header";
 import axios from "axios";
+import {authMe} from "../../api/api";
 
 type ParamsType = {
     id: string,
@@ -25,9 +26,7 @@ export type HeaderPropsType = RouteComponentProps<ParamsType> & MapDispatchProps
 
 export class HeaderContainerAPI extends React.Component<HeaderPropsType> {
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-            withCredentials: true
-        })
+        authMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data;

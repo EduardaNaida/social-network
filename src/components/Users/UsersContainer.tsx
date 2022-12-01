@@ -9,10 +9,9 @@ import {
     UsersData
 } from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/redux-store";
-import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloder";
-import getUsers from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 type MapStatePropsType = {
     usersPage: UsersData[]
@@ -38,7 +37,7 @@ export class UsersAPIComponent extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
         this.props.setIsFetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize)
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(data.items);
@@ -49,7 +48,7 @@ export class UsersAPIComponent extends React.Component<UsersPagePropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true)
-        getUsers(pageNumber, this.props.pageSize)
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(data.items);
