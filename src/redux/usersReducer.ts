@@ -5,6 +5,7 @@ export type UsersReducersActionType =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalCount>
     | ReturnType<typeof setIsFetching>
+    | ReturnType<typeof setIsFollowing>
 
 
 const FOLLOW = "FOLLOW";
@@ -13,13 +14,16 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING';
 
 export type UsersData = {
     id: number,
     name: string
     followed: boolean
-    photos: { small: string,
-        large: string }
+    photos: {
+        small: string,
+        large: string
+    }
 }
 
 export type UserPropsType = {
@@ -27,7 +31,8 @@ export type UserPropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: Array<any>
 }
 
 const initialState: UserPropsType = {
@@ -35,7 +40,8 @@ const initialState: UserPropsType = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 export const usersReducer = (state: UserPropsType = initialState, action: UsersReducersActionType): UserPropsType => {
@@ -83,6 +89,13 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
                 ...state,
                 isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING:
+            return {
+                ...state,
+                followingInProgress: action.followingInProgress
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
         default:
             return state;
     }
@@ -127,5 +140,13 @@ export const setIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
+    } as const
+}
+
+export const setIsFollowing = (followingInProgress: boolean, userId: number) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING,
+        followingInProgress,
+        userId
     } as const
 }
