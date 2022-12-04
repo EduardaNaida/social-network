@@ -1,6 +1,9 @@
+import {followAPI, usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+
 export type UsersReducersActionType =
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalCount>
@@ -101,14 +104,14 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
     }
 };
 
-export const follow = (userID: number) => {
+export const followSuccess = (userID: number) => {
     return {
         type: FOLLOW,
         userID: userID
     } as const
 }
 
-export const unfollow = (userID: number) => {
+export const unfollowSuccess = (userID: number) => {
     return {
         type: UNFOLLOW,
         userID: userID
@@ -149,4 +152,44 @@ export const setIsFollowing = (followingInProgress: boolean, userId: number) => 
         followingInProgress,
         userId
     } as const
+}
+
+
+export const getUser = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true));
+        usersAPI.getUsersData(currentPage, pageSize)
+            .then(data => {
+                dispatch(setIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalCount(data.totalCount));
+            });
+    }
+}
+
+export const unfollow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFollowing(true, userId))
+        followAPI.unfollowUsers(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(setIsFollowing(false, userId))
+            })
+    }
+}
+
+export const follow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFollowing(true, userId))
+        followAPI.followUsers(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(setIsFollowing(false, userId))
+            })
+    }
 }
