@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+import { usersAPI} from "../api/api";
 
 export type ProfileReducersActionType =
     | ReturnType<typeof AddPostAC>
@@ -94,3 +96,12 @@ export const setUserProfile = (profile: any) => {
     } as const
 }
 
+
+export const getUserProfile = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data));
+            });
+    }
+}

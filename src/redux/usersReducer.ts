@@ -1,4 +1,4 @@
-import {followAPI, usersAPI} from "../api/api";
+import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 export type UsersReducersActionType =
@@ -97,7 +97,7 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
                 ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         default:
             return state;
@@ -158,6 +158,7 @@ export const setIsFollowing = (followingInProgress: boolean, userId: number) => 
 export const getUser = (currentPage: number, pageSize: number) => {
 
     return (dispatch: Dispatch) => {
+        dispatch(setCurrentPage(currentPage));
         dispatch(setIsFetching(true));
         usersAPI.getUsersData(currentPage, pageSize)
             .then(data => {
@@ -171,7 +172,7 @@ export const getUser = (currentPage: number, pageSize: number) => {
 export const unfollow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setIsFollowing(true, userId))
-        followAPI.unfollowUsers(userId)
+        usersAPI.unfollowUsers(userId)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(unfollowSuccess(userId))
@@ -184,7 +185,7 @@ export const unfollow = (userId: number) => {
 export const follow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setIsFollowing(true, userId))
-        followAPI.followUsers(userId)
+        usersAPI.followUsers(userId)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(followSuccess(userId))
@@ -193,3 +194,4 @@ export const follow = (userId: number) => {
             })
     }
 }
+

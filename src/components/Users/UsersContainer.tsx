@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {
     follow, getUser,
-    setCurrentPage, setIsFetching, setIsFollowing,
+    setCurrentPage, setIsFetching,
     setTotalCount,
     setUsers, unfollow,
     UsersData
@@ -10,7 +10,6 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloder";
-import {usersAPI} from "../../api/api";
 
 type MapStatePropsType = {
     usersPage: UsersData[]
@@ -41,14 +40,7 @@ export class UsersAPIComponent extends React.Component<UsersPagePropsType> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.setIsFetching(true)
-        usersAPI.getUsersData(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setIsFetching(false)
-                this.props.setUsers(data.items);
-                this.props.setTotalCount(data.totalCount)
-            });
+        this.props.getUser(pageNumber, this.props.pageSize)
     }
 
     render() {

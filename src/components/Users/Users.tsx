@@ -3,7 +3,6 @@ import styles from "./Users.module.css";
 import avatar from "../../assets/images/avatar.png";
 import {unfollowSuccess, UsersData} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../api/api";
 
 export type PropsUserType = {
     usersPage: UsersData[]

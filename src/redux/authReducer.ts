@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {authMe} from "../api/api";
+
 export type authReducersActionType =
     | ReturnType<typeof setUserData>
 
@@ -37,3 +40,16 @@ export const setUserData = (id: number, email: string, login: string) => ({
         data: {id, email, login}
     } as const
 )
+
+export const getAuthUserData = () => {
+    return (dispatch: Dispatch) => {
+        authMe()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let {id, email, login} = response.data.data;
+                    console.log(id, email, login)
+                    dispatch(setUserData(id, email, login))
+                }
+            });
+    }
+}
