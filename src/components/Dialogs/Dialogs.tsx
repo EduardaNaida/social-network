@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 
 import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 // type DialogsType = {
 //     dialogsPage: DialogsPageType
@@ -33,6 +34,8 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.onChangeMessage(e.currentTarget.value)
 
     }
+
+    if (!props.isAuth) return <Redirect to={'login'}/>
 
     return (
 
