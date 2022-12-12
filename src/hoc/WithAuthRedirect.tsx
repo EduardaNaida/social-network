@@ -20,8 +20,7 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
 
         return <Component {...restProps as T}/>;
     }
-    let connectedRedirectComponent = connect(mapStateToProps)(RedirectComponent)
-    return connectedRedirectComponent
+    return connect(mapStateToProps)(RedirectComponent)
 }
 
 export default withAuthRedirect;
