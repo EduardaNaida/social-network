@@ -35,7 +35,6 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     }
 
-    if (!props.isAuth) return <Redirect to={'login'}/>
 
     return (
 
