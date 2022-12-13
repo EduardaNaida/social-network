@@ -12,7 +12,8 @@ type ParamsType = {
     userId: string
 }
 type MapStatePropsType = {
-    profile: ProfileType | null
+    profile: ProfileType | null,
+    status: string
 }
 
 type MapDispatchPropsType = {
@@ -42,7 +43,8 @@ export class ProfileContainer extends React.Component<ProfilePagePropsType> {
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 }
 

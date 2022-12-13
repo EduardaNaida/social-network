@@ -20,6 +20,7 @@ export type ProfilePageType = {
     postData: Array<PostData>
     newTextValue: string
     profile: ProfileType | null
+    status: string
 }
 
 export type ProfileType = {
@@ -36,7 +37,8 @@ const initialState: ProfilePageType = {
         {name: 'Artiom', message: 'Good morning', likes: '20'}
     ],
     newTextValue: '',
-    profile: null
+    profile: null,
+    status: 'Status'
 }
 
 // export type InitialStateType = typeof initialState
