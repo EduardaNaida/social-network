@@ -11,11 +11,11 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
         editMode: true
     }
 
-    activateMode() {
+    activateMode = () => {
         this.setState({editMode: true})
     }
 
-    deactivateMode() {
+    deactivateMode = () => {
         this.setState({editMode: false})
     }
 
@@ -24,12 +24,12 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
             <div>
                 {!this.state.editMode &&
                     <div>
-                        <span onClick={this.activateMode.bind(this)}>{this.props.status}</span>
+                        <span onClick={this.activateMode}>{this.props.status}</span>
                     </div>
                 }
                 {this.state.editMode &&
                     <div>
-                        <input onBlur={this.deactivateMode.bind(this)} placeholder={this.props.status}/>
+                        <input onBlur={this.deactivateMode} placeholder={this.props.status}/>
                     </div>
                 }
             </div>
