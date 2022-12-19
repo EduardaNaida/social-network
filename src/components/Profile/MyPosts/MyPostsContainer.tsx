@@ -37,7 +37,6 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
     addPostCallback: (newTextValue: string) => void
-    updateNewPostText: (newMessage: string) => void
 }
 
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
@@ -53,9 +52,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         addPostCallback: (newTextValue: string) => {
             dispatch(AddPostAC(newTextValue));
-        },
-        updateNewPostText: (text: string) => {
-            dispatch(NewPostText(text));
         }
     }
 }
