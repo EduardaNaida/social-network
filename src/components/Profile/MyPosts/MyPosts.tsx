@@ -40,13 +40,6 @@ export const MyPosts = (props: ProfilePropsType) => {
         props.addPostCallback(newTextValue.text);
     }
 
-    // const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     props.updateNewPostText(e.currentTarget.value)
-    // }
-    // const onSubmit = (formData: FormDataType) => {
-    //     console.log(formData)
-    // }
-
     return (
         <div className={s.posts}>
             <h3>My posts</h3>
