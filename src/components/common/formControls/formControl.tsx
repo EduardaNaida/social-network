@@ -7,16 +7,27 @@ type FormsControl = {
     meta: WrappedFieldMetaProps,
     placeholder?: string,
     type?: HTMLInputTypeAttribute,
-    autoFocuse?: boolean
+    autoFocuse?: boolean,
+    children?: JSX.Element
 }
-export const TextArea = (props: FormsControl) => {
+
+const FormControl = (props: FormsControl) => {
     const hasError = props.meta.touched && props.meta.error
+    debugger
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
             <div>
-                <textarea {...props.input} {...props}/>
+                {props.children}
             </div>
-            {hasError && <span>Error</span>}
+            {hasError && <span>{props.meta.error}</span>}
         </div>
     );
+}
+
+export const TextArea = (props: FormsControl) => {
+    return <FormControl {...props}><textarea {...props.input} {...props}/></FormControl>
+};
+
+export const Input = (props: FormsControl) => {
+    return <FormControl {...props}><input {...props.input} {...props}/></FormControl>
 };
