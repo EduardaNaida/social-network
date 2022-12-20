@@ -1,6 +1,3 @@
-import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReducer";
-import {sidebarReducer} from "./sidebarReducer";
 type DialogsPageType = {
     messageData: Array<MessageData>
     dialogsData: Array<DialogsData>

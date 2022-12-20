@@ -13,7 +13,6 @@ type FormsControl = {
 
 const FormControl = (props: FormsControl) => {
     const hasError = props.meta.touched && props.meta.error
-    debugger
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
             <div>

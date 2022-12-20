@@ -2,24 +2,30 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/formControls/formControl";
 import {requiredField} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/authReducer";
+import {AppStateType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 type FormDataType = {
-    login: string,
+    email: string,
     password: string,
-    rememberMe: string
+    rememberMe: boolean,
+    captcha: boolean
 }
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'}
-                       name={'login'}
+                <Field placeholder={'Email'}
+                       name={'email'}
                        component={Input}
                        validate={[requiredField]}/>
             </div>
             <div>
                 <Field placeholder={'Password'}
+                       type={'password'}
                        name={'password'}
                        component={Input}
                        validate={[requiredField]}/>
@@ -37,11 +43,15 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     );
 };
 
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: 'email'})(LoginForm)
 
-const Login = () => {
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div>
@@ -51,4 +61,20 @@ const Login = () => {
     );
 };
 
-export default Login;
+type LoginPropsType = mapDispatchToProps & mapStateToPropsType
+
+type mapDispatchToProps = {
+    login: (email: string, password: string, rememberMe: boolean, captcha: boolean) => void
+}
+
+type mapStateToPropsType = {
+    isAuth: boolean
+}
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+export default connect(mapStateToProps, {login})(Login);
+
+

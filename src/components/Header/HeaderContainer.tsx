@@ -2,7 +2,7 @@ import React from 'react';
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {getAuthUserData} from "../../redux/authReducer";
+import {getAuthUserData, logout} from "../../redux/authReducer";
 import {Header} from "./Header";
 
 type ParamsType = {
@@ -18,6 +18,7 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
     getAuthUserData: () => void
+    logout: () => void
 }
 
 export type HeaderPropsType = RouteComponentProps<ParamsType> & MapDispatchPropsType & MapStatePropsType
@@ -43,5 +44,5 @@ const mapStateToProps = (state: AppStateType) => ({
 let WithURLDataContainer = withRouter(HeaderContainerAPI)
 
 export const HeaderContainer = connect(mapStateToProps, {
-    getAuthUserData
+    getAuthUserData, logout
 })(WithURLDataContainer)

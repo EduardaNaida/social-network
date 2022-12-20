@@ -11,13 +11,13 @@ const instance = axios.create({
 export const usersAPI = {
     getUsersData(currentPage: number, pageSize: number) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
-            .then(response => response.data)
+            .then(response => response.data);
     },
     unfollowUsers(id: number) {
-        return instance.delete(`follow/${id}`)
+        return instance.delete(`follow/${id}`);
     },
     followUsers(id: number) {
-        return instance.post(`follow/${id}`)
+        return instance.post(`follow/${id}`);
     },
     getProfile(userId: string) {
         return profileAPI.getProfile(userId)
@@ -31,13 +31,21 @@ export const profileAPI = {
         return instance.get(`profile/` + userId);
     },
     getStatus(userId: string) {
-        return instance.get(`profile/status/${userId}`)
+        return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status: string) {
-        return instance.put('profile/status', {status: status})
+        return instance.put('profile/status', {status: status});
     }
 }
-export const authMe = () => {
-    return instance.get('auth/me')
+export const authAPI = {
+    authMe() {
+        return instance.get('auth/me');
+    },
+    login(email: string, password: string, rememberMe: boolean, captcha: boolean){
+        return instance.post('auth/login', {email, password, rememberMe, captcha});
+    },
+    logout(){
+        return  instance.delete('auth/login');
+    }
 }
 
