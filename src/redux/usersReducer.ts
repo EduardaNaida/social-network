@@ -155,12 +155,11 @@ export const setIsFollowing = (followingInProgress: boolean, userId: number) => 
 }
 
 
-export const getUser = (currentPage: number, pageSize: number) => {
-
+export const requestUser = (page: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
-        dispatch(setCurrentPage(currentPage));
+        dispatch(setCurrentPage(page));
         dispatch(setIsFetching(true));
-        usersAPI.getUsersData(currentPage, pageSize)
+        usersAPI.getUsersData(page, pageSize)
             .then(data => {
                 dispatch(setIsFetching(false));
                 dispatch(setUsers(data.items));

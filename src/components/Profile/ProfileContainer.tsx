@@ -30,8 +30,9 @@ export class ProfileContainer extends React.Component<ProfilePagePropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            console.log(this.props.userId);
+            // console.log(this.props.userId);
             userId = String(this.props.userId);
+            // userId = '2'
             if (!userId) {
                 this.props.history.push('/login')
             }
