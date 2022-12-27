@@ -24,9 +24,6 @@ type MapDispatchPropsType = {
 export type HeaderPropsType = RouteComponentProps<ParamsType> & MapDispatchPropsType & MapStatePropsType
 
 export class HeaderContainerAPI extends React.Component<HeaderPropsType> {
-    componentDidMount() {
-        this.props.getAuthUserData()
-    }
 
     render() {
         return (

@@ -30,8 +30,11 @@ export class ProfileContainer extends React.Component<ProfilePagePropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            // userId = this.props.userId;
-            userId = '2';
+            console.log(this.props.userId);
+            userId = String(this.props.userId);
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -42,7 +45,8 @@ export class ProfileContainer extends React.Component<ProfilePagePropsType> {
 
         // if (!this.props.isAuth) return <Redirect to={'login'}/>
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateUserStatus}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                     updateStatus={this.props.updateUserStatus}/>
         );
     }
 }

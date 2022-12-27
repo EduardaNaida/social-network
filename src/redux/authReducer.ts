@@ -1,8 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
-import {AppDispatch, DispatchType} from "./redux-store";
+import {DispatchType} from "./redux-store";
 import {stopSubmit} from "redux-form";
-import {Simulate} from "react-dom/test-utils";
 
 export type authReducersActionType =
     | ReturnType<typeof setUserData>
@@ -45,7 +44,7 @@ export const setUserData = (id: number | null, email: string | null, login: stri
 
 export const getAuthUserData = () => {
     return (dispatch: Dispatch) => {
-        authAPI.authMe()
+        return authAPI.authMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data;
@@ -58,8 +57,6 @@ export const getAuthUserData = () => {
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean) => {
 
-    // let action = stopSubmit('email', {_error: 'error'})
-    // console.log(action)
     return (dispatch: DispatchType) => {
         authAPI.login(email, password, rememberMe, captcha)
             .then(res => {
