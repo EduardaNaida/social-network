@@ -1,58 +1,49 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import style from "./ProfileStatus.module.css";
 
 type ProfileStatusType = {
-    status: string
-    updateStatus: (status: string) => void
+  status: string
+  updateStatus: (status: string) => void
 }
 
-class ProfileStatus extends React.Component<ProfileStatusType> {
+const ProfileStatus = (props: ProfileStatusType) => {
 
-    state = {
-        editMode: false,
-        status: this.props.status
-    }
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-    activateMode = () => {
-        this.setState({editMode: true})
-    }
+  useEffect(() => {
+    setStatus(props.status)
+  }, [props.status])
 
-    deactivateMode = () => {
-        this.setState({editMode: false})
-        this.props.updateStatus(this.state.status)
-    }
+  const activateMode = () => {
+    setEditMode(true)
+  }
 
-    onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({status: e.currentTarget.value})
-    }
+  const deactivateMode = () => {
+    setEditMode(false)
+    props.updateStatus(status)
+  }
 
-    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
-        }
-    }
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.currentTarget.value)
+  }
 
-
-    render() {
-        return (
-            <div>
-                {!this.state.editMode &&
-                    <div>
-                        <span onClick={this.activateMode}>{this.props.status || 'No status'}</span>
-                    </div>
-                }
-                {this.state.editMode &&
-                    <div>
-                        <input onChange={this.onChangeHandler}
-                               onBlur={this.deactivateMode}
-                               value={this.state.status}/>
-                    </div>
-                }
-            </div>
-        );
-    }
+  return (
+    <div>
+      {!editMode &&
+          <div>
+              <span onClick={activateMode}>{props.status || 'No status'}</span>
+          </div>
+      }
+      {editMode &&
+          <div>
+              <input onChange={onChangeHandler}
+                     onBlur={deactivateMode}
+                     value={status}/>
+          </div>
+      }
+    </div>
+  );
 };
 
 export default ProfileStatus;
