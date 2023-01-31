@@ -6,6 +6,7 @@ type PostType = {
     message: string
     likes:string
 }
+
 export const Post = (props: PostType) => {
     return (
         <div>

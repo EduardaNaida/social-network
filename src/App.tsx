@@ -34,6 +34,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export type AppPagePropsType = AppStateType & MapDispatchPropsType & MapStatePropsType
 
 class App extends React.Component<AppPagePropsType> {
+
     componentDidMount() {
         this.props.initializeApp()
     }

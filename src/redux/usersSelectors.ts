@@ -1,4 +1,3 @@
-import React from 'react';
 import {AppStateType} from "./redux-store";
 
 export const getUser = (state: AppStateType) => {
@@ -24,12 +23,3 @@ export const getIsFetching = (state: AppStateType) => {
 export const getFollowingInProgress = (state: AppStateType) => {
     return  state.usersPage.followingInProgress;
 }
-
-
-/*
-usersPage: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress*/

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/-samurai-way.iml" filepath="$PROJECT_DIR$/.idea/-samurai-way.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Todolist/.idea/Todolist.iml" filepath="$PROJECT_DIR$/../Todolist/.idea/Todolist.iml" />
     </modules>
   </component>
 </project>

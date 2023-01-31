@@ -4,12 +4,12 @@ type DialogsPageType = {
     newMessage: string
 }
 
-export type ProfilePageType = {
-    postData: Array<PostData>
+type ProfilePageType = {
+    postData: Array<PostSSData>
     newTextValue: string
 }
 
-type PostData = {
+export type PostSSData = {
     name: string
     message: string
     likes: string
@@ -24,9 +24,9 @@ type DialogsData = {
     name: string
 }
 
-export type SidebarType = {}
+ type SidebarType = {}
 
-export type RootStateType = {
+ type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
@@ -58,31 +58,31 @@ export type RootStateType = {
 //     sidebar: {}
 // }
 
-export type AddPostActionType = {
+ type AddPostActionType = {
     type: "ADD-POST"
     postMessage: string
 }
-export type AddMessageActionType = {
-    type: "ADD-MESSAGE"
+ type AddMessageActionType = {
+    type: "DIALOGS/ADD-MESSAGE"
     postMessage: string
 }
-export type NewMessageActionType = {
-    type: 'NEW-MESSAGE'
+ type NewMessageActionType = {
+    type: 'DIALOGS/NEW-MESSAGE'
     newText: string
 }
 
-export type ChangeNewTextType = {
+type ChangeNewTextType = {
     type: "NEW-POST-TEXT"
     newText: string
 }
 
-export type ActionsType = AddPostActionType
+ type ActionsType = AddPostActionType
     | ChangeNewTextType
     | AddMessageActionType
     | NewMessageActionType
 
 
-export type StoreType = {
+ type StoreType = {
     _state: RootStateType,
     _callSubscriber: () => void
     getState: () => RootStateType

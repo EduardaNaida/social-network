@@ -4,7 +4,7 @@ import {getAuthUserData} from "./authReducer";
 export type authReducersActionType =
     | ReturnType<typeof setInitialized>
 
-const SET_INITIALIZED = "SET_INITIALIZED";
+const SET_INITIALIZED = "APP/SET_INITIALIZED";
 
 export type AppDataType = {
     initialized: boolean

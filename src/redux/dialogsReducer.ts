@@ -1,12 +1,9 @@
-import React from 'react';
-import {ActionsType, AddMessageActionType, NewMessageActionType} from "./store";
-
 export type dialogsReducersActionType =
     | ReturnType<typeof AddMessage>
     | ReturnType<typeof NewMessage>
 
-const ADD_MESSAGE = "ADD-MESSAGE";
-const NEW_MESSAGE = "NEW-MESSAGE";
+const ADD_MESSAGE = "DIALOGS/ADD-MESSAGE";
+const NEW_MESSAGE = "DIALOGS/NEW-MESSAGE";
 
 export type MessageData = {
     id: number
@@ -40,7 +37,6 @@ const initialState = {
     newMessage: ''
 }
 
-//export type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: dialogsReducersActionType): DialogsPageType => {
 
@@ -66,12 +62,12 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: di
     }
 };
 
-export const AddMessage = (postMessage: string): AddMessageActionType => ({
+export const AddMessage = (postMessage: string) => ({
         type: ADD_MESSAGE,
         postMessage: postMessage
     } as const
 )
-export const NewMessage = (newText: string): NewMessageActionType => ({
+export const NewMessage = (newText: string) => ({
         type: NEW_MESSAGE,
         newText: newText
     } as const
