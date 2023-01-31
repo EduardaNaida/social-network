@@ -12,7 +12,7 @@ type FormDataType = {
 
 const maxLength =  maxLengthCreator(10);
 
-const MyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const MyPostForm: React.FC<InjectedFormProps<FormDataType>> =(props) => {
 
     return (
             <form onSubmit={props.handleSubmit}>
@@ -33,7 +33,7 @@ const MyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 const PostReduxForm = reduxForm<FormDataType>({form: 'text'})(MyPostForm)
 
 
-export const MyPosts = (props: ProfilePropsType) => {
+export const MyPosts = React.memo((props: ProfilePropsType) => {
 
     let getPostData = props.profilePage.postData.map((ev, id) => {
         return (
@@ -52,4 +52,4 @@ export const MyPosts = (props: ProfilePropsType) => {
             {getPostData}
         </div>
     )
-}
+});
