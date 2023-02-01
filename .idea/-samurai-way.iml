@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Todolist" />
+    <orderEntry type="module" module-name="cards_project" />
   </component>
 </module>

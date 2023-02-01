@@ -12,6 +12,7 @@ export type PropsUserType = {
   unfollow: (userId: number) => void
   onPageChanged: (pageNumber: number) => void
   followingInProgress: Array<any>
+  setCurrentPage: (value: number) => void
 }
 
 const Users: FC<PropsUserType> = ({
@@ -33,7 +34,7 @@ const Users: FC<PropsUserType> = ({
                  totalUsersCount={totalUsersCount}/>
       USERS
       <div>
-        {usersPage.map(u => <User key={u.id}
+        {usersPage.map((u, index) => <User key={index}
                                   users={u}
                                   unfollow={unfollow}
                                   follow={follow}

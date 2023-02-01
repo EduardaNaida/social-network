@@ -1,32 +1,31 @@
 import React, {FC} from 'react';
 import styles from "./Paginator.module.css";
+import {Pagination} from "@mui/material";
 
 export type PropsPaginatorType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  onPageChanged: (pageNumber: number) => void
+  onPageChanged: (value: number) => void
 }
 
-export const Paginator: FC<PropsPaginatorType> = ({pageSize, currentPage, totalUsersCount, onPageChanged}) => {
+export const Paginator: FC<PropsPaginatorType> = ({
+                                                    pageSize, currentPage, totalUsersCount,
+                                                    onPageChanged
+                                                  }) => {
 
   let pagesCount = Math.ceil(totalUsersCount / pageSize)
 
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    onPageChanged(value)
   }
-
   return (
     <div>
-      {pages.map((p, index) => {
-        return <span key={index} className={currentPage === p ? styles.selectedPage : 'default'}
-                     onClick={(e) => {
-                       onPageChanged(p)
-                     }}>{p}</span>
-      })
-      }
+          <Pagination
+            count={pagesCount}
+            onChange={handleChange}
+            size={'large'}
+          />
     </div>
   );
 };

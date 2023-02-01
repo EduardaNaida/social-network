@@ -57,6 +57,7 @@ export class UsersContainer extends React.Component<UsersPagePropsType> {
     return <>
       {this.props.isFetching ? <Preloader/> : null}
       <Users
+        setCurrentPage={this.props.setCurrentPage}
         totalUsersCount={this.props.totalUsersCount}
         usersPage={this.props.usersPage}
         pageSize={this.props.pageSize}
