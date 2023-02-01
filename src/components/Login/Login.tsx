@@ -15,6 +15,7 @@ type FormDataType = {
   captcha: boolean
   error: string
 }
+
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
   return (

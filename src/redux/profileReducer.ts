@@ -29,6 +29,8 @@ export type ProfilePageType = {
 
 export type ProfileType = {
   lookingForAJobDescription: string,
+  lookingForAJob: boolean,
+  fullName: string,
   photos: {
     small: string | undefined,
     large: string | undefined

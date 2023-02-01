@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloder";
 import {ProfileType} from "../../../redux/profileReducer";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import avatar from "../../../assets/images/avatar.png";
+import {ProfileData} from "./ProfileData/ProfileData";
+import {ProfileDataFormRedux} from "./ProfileData/ProfileDataForm/ProfileDataForm";
 
 type ProfileInfoType = {
   profile: ProfileType | null
@@ -11,18 +13,34 @@ type ProfileInfoType = {
   updateStatus: (status: string) => void
 }
 
+type FormDataType = {
+  profile: ProfileType
+  error: string
+}
 
 export const ProfileInfo = (props: ProfileInfoType) => {
+
+  const [editMode, setEditMode] = useState(false);
 
   if (!props.profile) {
     return <Preloader/>
   }
 
+  const onSubmit = (formData: FormDataType) => {
+    console.log(formData)
+  }
   return (
     <div className={s.profile}>
       <div className={s.description}>
         <img src={props.profile.photos.small != null ? props.profile.photos.large : avatar} alt="profile"/>
-        <p>Description: {props.profile.lookingForAJobDescription}</p>
+
+        {editMode ?
+          <ProfileDataFormRedux onSubmit={onSubmit}/>
+          :
+          <ProfileData profile={props.profile} status={props.status} updateStatus={props.updateStatus} callback={() => {
+            setEditMode(true)
+          }}/>}
+
       </div>
       <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>
