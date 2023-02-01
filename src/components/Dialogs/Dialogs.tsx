@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -16,6 +16,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             <DialogItem key={index} id={ev.id} name={ev.name}/>
         )
     })
+
     const message = props.dialogsPage.messageData.map((ev, index) => {
         return (
             <Message key={index} id={ev.id} message={ev.message}/>
@@ -23,13 +24,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     })
 
     const addMessage = (newMessage: FormDataType) => {
-        //props.dispatch(AddMessage(props.newMessage));
         props.addMessage(newMessage.text);
-    }
-
-    const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onChangeMessage(e.currentTarget.value)
-
     }
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../redux/reduxStore";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {getAuthUserData, logout} from "../../redux/authReducer";
@@ -30,7 +30,7 @@ export class HeaderContainerAPI extends React.Component<HeaderPropsType> {
             <Header {...this.props}/>
         );
     }
-};
+}
 
 
 const mapStateToProps = (state: AppStateType) => ({

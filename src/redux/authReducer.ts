@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
-import {DispatchType} from "./redux-store";
+import {DispatchType} from "./reduxStore";
 import {stopSubmit} from "redux-form";
 
 export type authReducersActionType =

@@ -1,6 +1,6 @@
 import {ResponseUserType, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
-import {AxiosResponse} from "axios";
+import {updateObjectInArray} from "../utils/objectHelper";
 
 export type UsersReducersActionType =
   | FollowType
@@ -56,22 +56,12 @@ export const usersReducer = (state: UserPropsType = initialState, action: UsersR
     case FOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return {...u, followed: true}
-          }
-          return u
-        })
+        users: updateObjectInArray(state.users, action.userID, "id", {followed: true})
       }
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return {...u, followed: false}
-          }
-          return u
-        })
+        users: updateObjectInArray(state.users, action.userID, "id", {followed: false})
       }
 
     case SET_USERS:

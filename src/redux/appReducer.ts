@@ -1,4 +1,4 @@
-import {AppDispatchType} from "./redux-store";
+import {AppDispatchType} from "./reduxStore";
 import {getAuthUserData} from "./authReducer";
 
 export type authReducersActionType =

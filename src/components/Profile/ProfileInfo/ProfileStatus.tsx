@@ -1,5 +1,4 @@
-import React, {ChangeEvent, FC, useEffect, useState} from 'react';
-import style from "./ProfileStatus.module.css";
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 type ProfileStatusType = {
   status: string
