@@ -19,14 +19,14 @@ export const usersAPI = {
   followUsers(id: number) {
     return instance.post<any, AxiosResponse<ResponseUserType>>(`follow/${id}`).then(response => response.data);
   },
-  getProfile(userId: string) {
-    return profileAPI.getProfile(userId)
-  }
+  // getProfile(userId: number) {
+  //   return profileAPI.getProfile(userId)
+  // }
 }
 
 
 export const profileAPI = {
-  getProfile(userId: string) {
+  getProfile(userId: number | null) {
     return instance.get(`profile/` + userId);
   },
   getStatus(userId: string) {
@@ -34,6 +34,9 @@ export const profileAPI = {
   },
   updateStatus(status: string) {
     return instance.put('profile/status', {status: status});
+  },
+  saveProfile(profile: ProfileRequestType) {
+    return instance.put('profile', profile);
   }
 }
 export const authAPI = {
@@ -53,4 +56,24 @@ export type ResponseUserType<T = {}> = {
   messages: string[],
   fieldsErrors: string[],
   resultCode: number
+}
+
+export type ProfileRequestType = {
+  userId: number,
+  lookingForAJob: boolean,
+  lookingForAJobDescription: string,
+  fullName: string,
+  aboutMe: string,
+  contacts: ContactsType
+}
+
+type ContactsType = {
+  github: string,
+  vk: string,
+  facebook: string,
+  instagram: string,
+  twitter: string,
+  website: string,
+  youtube: string,
+  mainLink: string
 }

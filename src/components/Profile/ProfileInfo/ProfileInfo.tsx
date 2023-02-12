@@ -6,11 +6,13 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import avatar from "../../../assets/images/avatar.png";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfileDataFormRedux} from "./ProfileData/ProfileDataForm/ProfileDataForm";
+import {ProfileRequestType} from "../../../api/api";
 
 type ProfileInfoType = {
   profile: ProfileType | null
   status: string
   updateStatus: (status: string) => void
+  saveProfile: (profile: ProfileRequestType) => void
 }
 
 type FormDataType = {
@@ -26,7 +28,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     return <Preloader/>
   }
 
-  const onSubmit = (formData: FormDataType) => {
+  const onSubmit = (formData: ProfileRequestType) => {
+    props.saveProfile(formData)
+    setEditMode(false)
     console.log(formData)
   }
   return (
@@ -35,7 +39,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <img src={props.profile.photos.small != null ? props.profile.photos.large : avatar} alt="profile"/>
 
         {editMode ?
-          <ProfileDataFormRedux onSubmit={onSubmit}/>
+          <ProfileDataFormRedux initialValues={props.profile} onSubmit={onSubmit}/>
           :
           <ProfileData profile={props.profile} status={props.status} updateStatus={props.updateStatus} callback={() => {
             setEditMode(true)

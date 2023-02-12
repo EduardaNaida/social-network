@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI, ProfileRequestType, usersAPI} from "../api/api";
+import {AppThunk} from "./reduxStore";
 
 export type ProfileReducersActionType =
   | ReturnType<typeof AddPostAC>
@@ -31,6 +32,7 @@ export type ProfileType = {
   lookingForAJobDescription: string,
   lookingForAJob: boolean,
   fullName: string,
+  aboutMe: string,
   photos: {
     small: string | undefined,
     large: string | undefined
@@ -128,10 +130,10 @@ export const updateStatus = (status: string) => {
   } as const
 }
 
-export const getUserProfile = (userId: string) => {
+export const getUserProfile = (userId: number | null) => {
   return async (dispatch: Dispatch) => {
 
-    let response = await usersAPI.getProfile(userId)
+    let response = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
   }
 }
@@ -151,6 +153,18 @@ export const updateUserStatus = (status: string) => {
 
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status))
+    }
+  }
+}
+export const saveProfile = (profile: ProfileRequestType): AppThunk => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.id
+    const response = await profileAPI.saveProfile(profile)
+
+    if (response.data.resultCode === 0) {
+      console.log(response.data)
+      dispatch(getUserProfile(userId))
+      console.log('done')
     }
   }
 }

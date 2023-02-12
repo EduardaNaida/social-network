@@ -3,6 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {ProfileType} from "../../../../../redux/profileReducer";
 import {Input} from "../../../../common/formControls/formControl";
 import {requiredField} from "../../../../../utils/validators/validators";
+import {ProfileRequestType} from "../../../../../api/api";
 
 
 type FormDataType = {
@@ -10,7 +11,7 @@ type FormDataType = {
   error: string
 }
 
-const ProfileDataForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileRequestType>> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div><button>save</button></div>
@@ -39,7 +40,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
       <div>
         <b>About me: </b>
         <Field placeholder={'About me'}
-               name={'about'}
+               name={'aboutMe'}
                component={Input}/>
       </div>
 
@@ -47,4 +48,4 @@ const ProfileDataForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   );
 };
 
-export const ProfileDataFormRedux = reduxForm<FormDataType>({form: 'edit-profile'})(ProfileDataForm)
+export const ProfileDataFormRedux = reduxForm<ProfileRequestType>({form: 'edit-profile'})(ProfileDataForm)

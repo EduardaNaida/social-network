@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/-samurai-way.iml" filepath="$PROJECT_DIR$/.idea/-samurai-way.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Todolist/.idea/Todolist.iml" filepath="$PROJECT_DIR$/../Todolist/.idea/Todolist.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cards_project/.idea/cards_project.iml" filepath="$PROJECT_DIR$/../cards_project/.idea/cards_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../profile-react/profile-react/.idea/profile-react.iml" filepath="$PROJECT_DIR$/../profile-react/profile-react/.idea/profile-react.iml" />
     </modules>
   </component>
 </project>

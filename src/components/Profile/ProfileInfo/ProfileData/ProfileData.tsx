@@ -25,9 +25,13 @@ export const ProfileData = (props: ProfileDataType) => {
 
       {props.profile.lookingForAJob &&
           <div>
-              <b>Description: </b>{props.profile.lookingForAJobDescription}
+              <b>My professional skills: </b>{props.profile.lookingForAJobDescription}
           </div>
       }
+
+      <div>
+        <b>About me: </b> {props.profile.aboutMe}
+      </div>
     </>
   );
 };
