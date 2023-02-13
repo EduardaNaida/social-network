@@ -7,6 +7,7 @@ import avatar from "../../../assets/images/avatar.png";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfileDataFormRedux} from "./ProfileData/ProfileDataForm/ProfileDataForm";
 import {ProfileRequestType} from "../../../api/api";
+import {Contacts} from "./Contacts/Contacts";
 
 type ProfileInfoType = {
   profile: ProfileType | null
@@ -15,10 +16,6 @@ type ProfileInfoType = {
   saveProfile: (profile: ProfileRequestType) => void
 }
 
-type FormDataType = {
-  profile: ProfileType
-  error: string
-}
 
 export const ProfileInfo = (props: ProfileInfoType) => {
 
@@ -30,7 +27,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
 
   const onSubmit = (formData: ProfileRequestType) => {
     props.saveProfile(formData)
-    setEditMode(false)
+    //setEditMode(false)
     console.log(formData)
   }
   return (
@@ -39,13 +36,16 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <img src={props.profile.photos.small != null ? props.profile.photos.large : avatar} alt="profile"/>
 
         {editMode ?
-          <ProfileDataFormRedux initialValues={props.profile} onSubmit={onSubmit}/>
+          <ProfileDataFormRedux initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
           :
           <ProfileData profile={props.profile} status={props.status} updateStatus={props.updateStatus} callback={() => {
             setEditMode(true)
           }}/>}
 
       </div>
+     {/*   {Object.keys(props.profile.contacts).map(key => {
+        return <Contacts key={key} contactTitle={key} contactValue={props.profile?.contacts[key]}/>
+      })}*/}
       <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>
   );

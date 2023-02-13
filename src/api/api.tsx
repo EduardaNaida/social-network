@@ -67,7 +67,7 @@ export type ProfileRequestType = {
   contacts: ContactsType
 }
 
-type ContactsType = {
+export type ContactsType = {
   github: string,
   vk: string,
   facebook: string,

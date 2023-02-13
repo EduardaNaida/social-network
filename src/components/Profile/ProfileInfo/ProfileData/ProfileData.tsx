@@ -1,5 +1,7 @@
 import React from 'react';
 import {ProfileType} from "../../../../redux/profileReducer";
+import {Contacts} from "../Contacts/Contacts";
+import {ContactsType} from "../../../../api/api";
 
 type ProfileDataType = {
   profile: ProfileType
@@ -31,6 +33,12 @@ export const ProfileData = (props: ProfileDataType) => {
 
       <div>
         <b>About me: </b> {props.profile.aboutMe}
+      </div>
+
+      <div>
+        <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
+        return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key as keyof ContactsType]}/>
+      })}
       </div>
     </>
   );

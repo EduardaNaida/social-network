@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
-import {profileAPI, ProfileRequestType, usersAPI} from "../api/api";
+import {ContactsType, profileAPI, ProfileRequestType, usersAPI} from "../api/api";
 import {AppThunk} from "./reduxStore";
+import {stopSubmit} from "redux-form";
 
 export type ProfileReducersActionType =
   | ReturnType<typeof AddPostAC>
@@ -33,6 +34,7 @@ export type ProfileType = {
   lookingForAJob: boolean,
   fullName: string,
   aboutMe: string,
+  contacts: ContactsType
   photos: {
     small: string | undefined,
     large: string | undefined
@@ -46,7 +48,7 @@ const initialState: ProfilePageType = {
   ],
   newTextValue: '',
   profile: null,
-  status: ''
+  status: '',
 }
 
 
@@ -162,9 +164,9 @@ export const saveProfile = (profile: ProfileRequestType): AppThunk => {
     const response = await profileAPI.saveProfile(profile)
 
     if (response.data.resultCode === 0) {
-      console.log(response.data)
       dispatch(getUserProfile(userId))
-      console.log('done')
+    } else {
+      dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
     }
   }
 }
