@@ -9,7 +9,7 @@ type ProfilePropsType = {
   profile: ProfileType | null,
   status: string,
   updateStatus: (status: string) => void
-  saveProfile: (profile: ProfileRequestType) => void
+  saveProfile: (profile: ProfileRequestType) => Promise<any>
 }
 
 export const Profile = (props: ProfilePropsType) => {

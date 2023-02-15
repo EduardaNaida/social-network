@@ -23,7 +23,7 @@ type MapDispatchPropsType = {
   getUserProfile: (userId: string) => void,
   getUserStatus: (status: string) => void,
   updateUserStatus: (status: string) => void
-  saveProfile: (profile: ProfileRequestType) => void
+  saveProfile: (profile: ProfileRequestType) => Promise<any>
 }
 export type ProfilePagePropsType = RouteComponentProps<ParamsType> & MapStatePropsType & MapDispatchPropsType
 
