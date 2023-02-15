@@ -1,7 +1,7 @@
-import React, {FC, useState} from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloder";
-import {ProfileType} from "../../../redux/profileReducer";
+import {ProfileType, savePhoto} from "../../../redux/profileReducer";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import avatar from "../../../assets/images/avatar.png";
 import {ProfileData} from "./ProfileData/ProfileData";
@@ -13,12 +13,15 @@ type ProfileInfoType = {
   status: string
   updateStatus: (status: string) => void
   saveProfile: (profile: ProfileRequestType) => Promise<any>
+  isOwner: boolean
+  savePhoto: (file: File) => void
 }
 
 
-export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus, saveProfile}) => {
+export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus, saveProfile, isOwner, savePhoto}) => {
 
   const [editMode, setEditMode] = useState(false);
+  const [img, setImg] = React.useState<string | undefined>()
 
   if (!profile) {
     return <Preloader/>
@@ -28,24 +31,29 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
     saveProfile(formData).then(() => {
       setEditMode(false)
     })
-
   }
+
+  const onSelectedPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length) {
+      console.log(e.target.files[0])
+      savePhoto(e.target.files[0]);
+    }
+  }
+
   return (
     <div className={s.profile}>
       <div className={s.description}>
-        <img src={profile.photos.small != null ? profile.photos.large : avatar} alt="profile"/>
+        <img src={profile.photos.large || avatar} alt="profile"/>
+        {isOwner && <input type="file" onChange={onSelectedPhoto} />}
 
         {editMode ?
           <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>
           :
           <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {
             setEditMode(true)
-          }}/>}
+          }} isOwner={isOwner}/>}
 
       </div>
-      {/*   {Object.keys(props.profile.contacts).map(key => {
-        return <Contacts key={key} contactTitle={key} contactValue={props.profile?.contacts[key]}/>
-      })}*/}
       <ProfileStatus status={status} updateStatus={updateStatus}/>
     </div>
   );

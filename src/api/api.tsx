@@ -1,5 +1,6 @@
 import React from 'react';
 import axios, {AxiosResponse} from "axios";
+import {PhotosType} from "../redux/profileReducer";
 
 
 const instance = axios.create({
@@ -19,9 +20,6 @@ export const usersAPI = {
   followUsers(id: number) {
     return instance.post<any, AxiosResponse<ResponseUserType>>(`follow/${id}`).then(response => response.data);
   },
-  // getProfile(userId: number) {
-  //   return profileAPI.getProfile(userId)
-  // }
 }
 
 
@@ -37,6 +35,16 @@ export const profileAPI = {
   },
   saveProfile(profile: ProfileRequestType) {
     return instance.put('profile', profile);
+  },
+  savePhoto(file: File) {
+    const formData = new FormData();
+    formData.append('image', file)
+
+    return instance.put('profile/photo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   }
 }
 export const authAPI = {

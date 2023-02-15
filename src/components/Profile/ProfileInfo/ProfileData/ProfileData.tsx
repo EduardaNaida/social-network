@@ -8,36 +8,37 @@ type ProfileDataType = {
   status: string
   updateStatus: (status: string) => void
   callback: () => void
+  isOwner: boolean
 }
 
 
-export const ProfileData = (props: ProfileDataType) => {
+export const ProfileData:React.FC<ProfileDataType> = ({profile, isOwner, updateStatus, status, callback}) => {
   return (
     <>
       <div>
-        <button onClick={props.callback}>edit</button>
+        {isOwner && <button onClick={callback}>edit</button>}
       </div>
       <div>
-        <b>Full name:</b> {props.profile.fullName}
+        <b>Full name:</b> {profile.fullName}
       </div>
 
       <div>
-        <b>Looking for a job: </b> {props.profile.lookingForAJob ? "yes" : "no"}
+        <b>Looking for a job: </b> {profile.lookingForAJob ? "yes" : "no"}
       </div>
 
-      {props.profile.lookingForAJob &&
+      {profile.lookingForAJob &&
           <div>
-              <b>My professional skills: </b>{props.profile.lookingForAJobDescription}
+              <b>My professional skills: </b>{profile.lookingForAJobDescription}
           </div>
       }
 
       <div>
-        <b>About me: </b> {props.profile.aboutMe}
+        <b>About me: </b> {profile.aboutMe}
       </div>
 
       <div>
-        <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
-        return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key as keyof ContactsType]}/>
+        <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+        return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
       })}
       </div>
     </>
