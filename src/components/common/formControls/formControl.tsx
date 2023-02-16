@@ -1,6 +1,7 @@
 import React, {ComponentType, HTMLInputTypeAttribute} from 'react';
 import {Field, WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import styles from './FormControls.module.css'
+import {Input} from "@mui/material";
 
 type FormsControl = {
   input: WrappedFieldInputProps,
@@ -27,8 +28,12 @@ export const TextArea = (props: FormsControl) => {
   return <FormControl {...props}><textarea {...props.input} {...props}/></FormControl>
 };
 
-export const Input = (props: FormsControl) => {
-  return <FormControl {...props}><input {...props.input} {...props}/></FormControl>
+export const InputArea = (props: FormsControl) => {
+  return <FormControl {...props}><Input sx={{width: '300px', height: '50px'}}  {...props.input} {...props}/></FormControl>
+};
+
+export const CheckBox = (props: FormsControl) => {
+  return <FormControl {...props}><input type={'checkbox'} {...props.input} {...props}/></FormControl>
 };
 
 export const createField = (placeholder: string | null,

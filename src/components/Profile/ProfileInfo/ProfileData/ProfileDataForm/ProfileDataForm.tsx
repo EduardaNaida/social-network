@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {ProfileType} from "../../../../../redux/profileReducer";
-import {Input} from "../../../../common/formControls/formControl";
+import {InputArea} from "../../../../common/formControls/formControl";
 import {requiredField} from "../../../../../utils/validators/validators";
 import {ProfileRequestType} from "../../../../../api/api";
 import style from "../../../../common/formControls/FormControls.module.css";
@@ -21,13 +21,13 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileRequestType, FormDataTy
         <b>Full name:</b>
         <Field placeholder={'Full name'}
                name={'fullName'}
-               component={Input}
+               component={InputArea}
                validate={[requiredField]}/>
       </div>
 
       <div>
         <b>Looking for a job: </b>
-        <Field component={Input}
+        <Field component={InputArea}
                type={'checkbox'}
                name={'lookingForAJob'}/>
       </div>
@@ -36,20 +36,20 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileRequestType, FormDataTy
         <b>My professional skills: </b>
         <Field placeholder={'My professional skills'}
                name={'lookingForAJobDescription'}
-               component={Input}/>
+               component={InputArea}/>
       </div>
 
       <div>
         <b>About me: </b>
         <Field placeholder={'About me'}
                name={'aboutMe'}
-               component={Input}/>
+               component={InputArea}/>
       </div>
 
       <div><b>Contacts:</b></div> {Object.keys(profile.contacts).map(key => {
       return <div key={key}>{key}: {<Field placeholder={key}
                                 name={'contacts.'+ key}
-                                component={Input}/>}
+                                component={InputArea}/>}
       </div>
     })}
 

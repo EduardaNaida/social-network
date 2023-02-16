@@ -1,12 +1,15 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/formControls/formControl";
+import {CheckBox, InputArea} from "../common/formControls/formControl";
 import {requiredField} from "../../utils/validators/validators";
 import {connect, useSelector} from "react-redux";
 import {login} from "../../redux/authReducer";
 import {AppStateType} from "../../redux/reduxStore";
 import {Redirect} from "react-router-dom";
-import style from '../common/formControls/FormControls.module.css'
+import styleError from '../common/formControls/FormControls.module.css'
+import style from './Login.module.css'
+import {Button} from "@mui/material";
+
 
 type FormDataType = {
   email: string,
@@ -19,41 +22,46 @@ type LoginCaptchaType = {
   captchaUrl: string | null
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginCaptchaType> & LoginCaptchaType> = ({error, handleSubmit, captchaUrl}) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginCaptchaType> & LoginCaptchaType> = ({
+                                                                                                     error,
+                                                                                                     handleSubmit,
+                                                                                                     captchaUrl
+                                                                                                   }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Field placeholder={'Email'}
-               name={'email'}
-               component={Input}
-               validate={[requiredField]}/>
-      </div>
-      <div>
-        <Field placeholder={'Password'}
-               type={'password'}
-               name={'password'}
-               component={Input}
-               validate={[requiredField]}/>
-      </div>
-      <div>
-        <Field component={Input}
-               type={'checkbox'}
-               name={'rememberMe'}
-               validate={[requiredField]}/>remember me
-      </div>
-      {error && <div className={style.formControlError}>{error}</div>}
+      <div className={style.loginForm}>
+        <div>
+          <Field placeholder={'Email'}
+                 name={'email'}
+                 component={InputArea}
+                 validate={[requiredField]}/>
+        </div>
+        <div>
+          <Field placeholder={'Password'}
+                 type={'password'}
+                 name={'password'}
+                 component={InputArea}
+                 validate={[requiredField]}/>
+        </div>
+        <div className={style.checkBox}>
+          <Field component={CheckBox}
+                 type={'checkbox'}
+                 name={'rememberMe'}
+                 validate={[requiredField]}/>remember me
+        </div>
+        <div>
+          {error && <div className={styleError.formControlError}>{error}</div>}
+        </div>
+        {captchaUrl && <img src={captchaUrl} alt="captcha"/>}
+        {captchaUrl && <Field placeholder={'Type symbols'}
+                              name={'captcha'}
+                              component={InputArea}
+                              validate={[requiredField]}/>}
 
-      {captchaUrl && <img src={captchaUrl} alt="captcha"/>}
-      {captchaUrl && <Field placeholder={'Type symbols'}
-                            name={'captcha'}
-                            component={Input}
-                            validate={[requiredField]}
-      />
-      }
-
-      <div>
-        <button>Login</button>
+        <div className={style.button}>
+          <Button sx={styleButton} type={'submit'}>Login</Button>
+        </div>
       </div>
     </form>
   );
@@ -62,7 +70,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginCaptchaType> & Lo
 const LoginReduxForm = reduxForm<FormDataType, LoginCaptchaType>({form: 'email'})(LoginForm)
 
 const Login = (props: LoginPropsType) => {
-  const captchaUrl = useSelector((state:AppStateType) => state.auth.captchaUrl)
+  const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl)
   const onSubmit = (formData: FormDataType) => {
     props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
   }
@@ -72,8 +80,8 @@ const Login = (props: LoginPropsType) => {
   }
 
   return (
-    <div>
-      <h3>Login page</h3>
+    <div className={style.loginBlock}>
+      <h2>Login page</h2>
       <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
     </div>
   );
@@ -95,6 +103,22 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     captchaUrl: state.auth.captchaUrl
   }
 }
+
+const styleButton = {
+  display: 'flex',
+  bgcolor: 'rgba(79,123,250,0.96)',
+  color: 'white',
+  borderRadius: 30,
+  width: 111,
+  height: 36,
+  fontSize: 15,
+  fontFamily: `'Montserrat', sans-serif`,
+  textTransform: 'none',
+  '&:hover': {
+    color: '#366EFF',
+  },
+}
+
 export default connect(mapStateToProps, {login})(Login);
 
 

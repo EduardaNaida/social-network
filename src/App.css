@@ -7,11 +7,12 @@
     "n p";
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
+    font-family: 'Montserrat', sans-serif;
     /*grid-gap: 10px;*/
 }
 
 .app-wrapper-content{
     grid-area: p;
-    background-color: rgba(48, 99, 199, 0.84);
+    /*background-color: rgba(48, 99, 199, 0.84);*/
 }
 
