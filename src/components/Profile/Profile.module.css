@@ -1,6 +1,6 @@
 .profile {
-    grid-area: p;
-    background-color: rgba(48, 99, 199, 0.84);
+    width: 911px;
+    margin-left: 20px;
 }
 
 .item img {

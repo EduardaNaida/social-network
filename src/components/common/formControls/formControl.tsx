@@ -19,7 +19,7 @@ const FormControl = (props: FormsControl) => {
       <div>
         {props.children}
       </div>
-      {hasError && <span>{props.meta.error}</span>}
+        {hasError && <span>{props.meta.error}</span>}
     </div>
   );
 }

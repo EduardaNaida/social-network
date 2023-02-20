@@ -7,6 +7,8 @@ import avatar from "../../../assets/images/avatar.png";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfileDataFormRedux} from "./ProfileData/ProfileDataForm/ProfileDataForm";
 import {ProfileRequestType} from "../../../api/api";
+import {EditModal} from "../../common/basicModal/editModal/editModal";
+import {BasicModal} from "../../common/basicModal/basicModal";
 
 type ProfileInfoType = {
   profile: ProfileType | null
@@ -41,20 +43,32 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
   }
 
   return (
-    <div className={s.profile}>
-      <div className={s.description}>
-        <img src={profile.photos.large || avatar} alt="profile"/>
-        {isOwner && <input type="file" onChange={onSelectedPhoto} />}
-
-        {editMode ?
-          <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-          :
-          <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {
-            setEditMode(true)
-          }} isOwner={isOwner}/>}
-
+    <div className={s.profileHeader}>
+      <div className={s.backGroundImg}>
+        <div className={s.pageCover}></div>
       </div>
-      <ProfileStatus status={status} updateStatus={updateStatus}/>
+      <div className={s.profileInfo}>
+        <div className={s.avatarWrapper}>
+          <div className={s.profileHeaderAva}>
+            <label htmlFor="file-input">
+              <img src={profile.photos.large || avatar} alt="profile" className={s.avatar}/>
+            </label>
+            {isOwner && <input id={'file-input'} type="file" onChange={onSelectedPhoto} style={{display: 'none'}}/>}
+          </div>
+        </div>
+        <div className={s.profileHeaderWrapper}>
+          {editMode ?
+            <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+            :
+            <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {
+              setEditMode(true)
+            }} isOwner={isOwner}/>}
+        </div>
+        <div className={s.basicModal}>
+          <BasicModal/>
+        </div>
+        <ProfileStatus status={status} updateStatus={updateStatus}/>
+      </div>
     </div>
   );
 };

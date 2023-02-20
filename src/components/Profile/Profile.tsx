@@ -3,6 +3,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileType, savePhoto} from "../../redux/profileReducer";
 import {ProfileRequestType} from "../../api/api";
+import style from './Profile.module.css'
 
 
 type ProfilePropsType = {
@@ -16,7 +17,7 @@ type ProfilePropsType = {
 
 export const Profile = (props: ProfilePropsType) => {
   return <>
-    <div>
+    <div className={style.profile}>
       <ProfileInfo profile={props.profile}
                    status={props.status}
                    updateStatus={props.updateStatus}

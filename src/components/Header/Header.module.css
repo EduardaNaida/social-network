@@ -13,6 +13,11 @@
     margin: 10px;
 }
 
+.itemBlock {
+    display: flex;
+    align-items: baseline;
+}
+
 .loginBlock a {
     color: #1e0b0b;
 }

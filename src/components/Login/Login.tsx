@@ -48,7 +48,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginCaptchaType> & Lo
           <Field component={CheckBox}
                  type={'checkbox'}
                  name={'rememberMe'}
-                 validate={[requiredField]}/>remember me
+                 validate={[requiredField]}/>
+          <div>Remember me
+        </div>
         </div>
         <div>
           {error && <div className={styleError.formControlError}>{error}</div>}
