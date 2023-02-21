@@ -18,56 +18,62 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileRequestType, FormDataTy
                                                                                                          error
                                                                                                        }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={style.profileEditData}>
-        <div>
-          <button>save</button>
-        </div>
-        {error && <div className={style.formControlError}>{error}</div>}
-        <div className={style.name}>
-          <div className={style.text}>Full name:</div>
-          <div className={style.field}>
-            <Field name={'fullName'}
-                   component={InputArea}
-                   validate={[requiredField]}
-                   className={style.field}
-            />
+      <form onSubmit={handleSubmit}>
+        <div className={style.profileEditData}>
+          <div>
+            <button className={style.button}>Save</button>
           </div>
-        </div>
+          {error && <div className={style.formControlError}>{error}</div>}
+          <div className={style.name}>
+            <div className={style.text}>Full name:</div>
+            <div className={style.field}>
+              <Field name={'fullName'}
+                     component={InputArea}
+                     validate={[requiredField]}
+                     className={style.field}
+              />
+            </div>
+          </div>
 
-        <div className={style.name}>
-          <div className={style.text}>Looking for a job: </div>
-          <div className={style.field}>
-            <Field component={CheckBox}
-                   type={'checkbox'}
-                   name={'lookingForAJob'}/>
+          <div className={style.name}>
+            <div className={style.text}>Looking for a job:</div>
+            <div className={style.field}>
+              <Field component={CheckBox}
+                     type={'checkbox'}
+                     name={'lookingForAJob'}/>
+            </div>
           </div>
-        </div>
 
-        <div className={style.name}>
-          <div className={style.text}>My professional skills: </div>
-          <div className={style.field}>
-            <Field name={'lookingForAJobDescription'}
-                   component={InputArea}/>
+          <div className={style.name}>
+            <div className={style.text}>My professional skills:</div>
+            <div className={style.field}>
+              <Field name={'lookingForAJobDescription'}
+                     component={InputArea}/>
+            </div>
           </div>
-        </div>
 
-        <div className={style.name}>
-          <div className={style.text}>About me: </div>
-          <div className={style.field}>
-            <Field name={'aboutMe'}
-                   component={InputArea}/>
+          <div className={style.name}>
+            <div className={style.text}>About me:</div>
+            <div className={style.field}>
+              <Field name={'aboutMe'}
+                     component={InputArea}/>
+            </div>
           </div>
-        </div>
 
-        <div><b>Contacts:</b></div>
-        {Object.keys(profile.contacts).map(key => {
-          return <div key={key}>{key}: {<Field name={'contacts.' + key}
-                                               component={InputArea}/>}
-          </div>
-        })}
-      </div>
-    </form>
+          <div className={style.contacts}><p>Contacts</p></div>
+          {Object.keys(profile.contacts).map(key => {
+            return <div key={key} className={style.name}>
+              <div className={style.text}>
+                {key}:
+              </div>
+              <div className={style.field}>
+                {<Field name={'contacts.' + key}
+                        component={InputArea}/>}
+              </div>
+            </div>
+          })}
+        </div>
+      </form>
   );
 };
 

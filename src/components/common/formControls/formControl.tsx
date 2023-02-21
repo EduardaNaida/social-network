@@ -30,9 +30,14 @@ export const TextArea = (props: FormsControl) => {
 
 export const InputArea = (props: FormsControl) => {
   return <FormControl {...props}><TextField
-    sx={{width: '300px', height: '50px'}}
+     // sx={{width: '300px', height: '30px'}}
+    inputProps={{
+      style: {
+        padding: 3
+      }
+    }}
     // variant="standard"
-    label={props.placeholder}
+    // label={props.placeholder}
     {...props.input}
     {...props}
   /></FormControl>

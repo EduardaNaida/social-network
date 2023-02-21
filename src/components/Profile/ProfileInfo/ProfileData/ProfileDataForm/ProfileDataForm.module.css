@@ -2,6 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: scroll;
+    height: 620px;
+}
+
+.button {
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #3465d3;
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.button:hover {
+    background-color: #3465d3;
+    color: #ffffff;
 }
 
 .name {
@@ -13,6 +29,7 @@
 .profileEditData div {
     justify-content: flex-start;
     align-items: center;
+    height: 30px;
 }
 
 .text {
@@ -25,4 +42,9 @@
 
 .field {
     width: 230px;
+    height: 10px;
+}
+
+.contacts {
+    font-weight: 600;
 }
