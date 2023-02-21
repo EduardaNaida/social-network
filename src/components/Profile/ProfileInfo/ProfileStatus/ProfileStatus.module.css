@@ -1,3 +1,9 @@
 .status{
-    background-color: #c2bc47;
+   margin-left: 10px;
+}
+
+.statusText {
+    display: flex;
+    margin-left: 10px;
+    color: #FFFFFF;
 }

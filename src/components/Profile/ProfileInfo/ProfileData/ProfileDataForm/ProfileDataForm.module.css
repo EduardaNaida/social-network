@@ -1,0 +1,28 @@
+.profileEditData {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.name {
+    display: flex;
+    margin: 8px 0 8px 0;
+    align-items: center;
+}
+
+.profileEditData div {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.text {
+    width: 160px;
+    /*padding: 6px 0 0 0;*/
+    line-height: 16px;
+    float: left;
+    text-align: right;
+}
+
+.field {
+    width: 230px;
+}

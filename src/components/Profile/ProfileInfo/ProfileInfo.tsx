@@ -57,15 +57,18 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
           </div>
         </div>
         <div className={s.profileHeaderWrapper}>
-          {editMode ?
-            <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-            :
-            <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {
-              setEditMode(true)
-            }} isOwner={isOwner}/>}
+          {/*{editMode ?*/}
+          {/*  <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>*/}
+          {/*  :*/}
+          {/*  <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {*/}
+          {/*    setEditMode(true)*/}
+          {/*  }} isOwner={isOwner}/>}*/}
         </div>
         <div className={s.basicModal}>
-          <BasicModal/>
+          <BasicModal profile={profile} onSubmit={onSubmit} status={status} updateStatus={updateStatus} callback={() => {
+            setEditMode(true)
+          }} isOwner={isOwner}
+          editMode={editMode}/>
         </div>
         <ProfileStatus status={status} updateStatus={updateStatus}/>
       </div>

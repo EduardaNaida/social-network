@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import style from "./ProfileStatus.module.css"
 
 type ProfileStatusType = {
   status: string
@@ -28,19 +29,21 @@ const ProfileStatus = (props: ProfileStatusType) => {
   }
 
   return (
-    <div>
-      {!editMode &&
-          <div>
-              <span onClick={activateMode}>{props.status || 'No status'}</span>
-          </div>
-      }
-      {editMode &&
-          <div>
-              <input onChange={onChangeHandler}
-                     onBlur={deactivateMode}
-                     value={status}/>
-          </div>
-      }
+    <div className={style.statusText}> Status:
+      <div className={style.status}>
+        {!editMode &&
+            <div>
+                <span onClick={activateMode}>{props.status || 'No status'}</span>
+            </div>
+        }
+        {editMode &&
+            <div>
+                <input onChange={onChangeHandler}
+                       onBlur={deactivateMode}
+                       value={status}/>
+            </div>
+        }
+      </div>
     </div>
   );
 };
