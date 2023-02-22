@@ -15,6 +15,6 @@
 
 .formControlError {
     border: 1px red solid;
-    padding: 5px;
+    /*padding: 5px;*/
     color: #9f0202;
 }

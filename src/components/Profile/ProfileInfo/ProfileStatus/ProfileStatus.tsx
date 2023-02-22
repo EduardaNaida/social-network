@@ -29,7 +29,7 @@ const ProfileStatus = (props: ProfileStatusType) => {
   }
 
   return (
-    <div className={style.statusText}> Status:
+    <div className={style.statusText}>Status:
       <div className={style.status}>
         {!editMode &&
             <div>

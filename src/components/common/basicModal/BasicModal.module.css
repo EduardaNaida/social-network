@@ -3,9 +3,16 @@
 }
 
 .button {
+    display: flex;
+    justify-content: flex-end;
     background-color: inherit;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
     border: none;
     margin: 4px 0 4px 0;
+    height: 20px;
+}
+
+.button:hover {
+    color: #3465d3;
 }

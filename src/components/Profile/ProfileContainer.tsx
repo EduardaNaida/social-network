@@ -14,6 +14,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import withAuthRedirect from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {ProfileRequestType} from "../../api/api";
+import style from "./Profile.module.css"
 
 
 type ParamsType = {
@@ -62,14 +63,16 @@ export class ProfileContainer extends React.Component<ProfilePagePropsType> {
   render() {
 
     return (
-      <Profile {...this.props}
-               profile={this.props.profile}
-               status={this.props.status}
-               updateStatus={this.props.updateUserStatus}
-               saveProfile={this.props.saveProfile}
-               isOwner={!this.props.match.params.userId}
-               savePhoto={this.props.savePhoto}
-      />
+      <div className={style.profileBlock}>
+        <Profile {...this.props}
+                 profile={this.props.profile}
+                 status={this.props.status}
+                 updateStatus={this.props.updateUserStatus}
+                 saveProfile={this.props.saveProfile}
+                 isOwner={!this.props.match.params.userId}
+                 savePhoto={this.props.savePhoto}
+        />
+      </div>
     );
   }
 }

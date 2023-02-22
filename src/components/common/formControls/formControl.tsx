@@ -25,19 +25,27 @@ const FormControl = (props: FormsControl) => {
 }
 
 export const TextArea = (props: FormsControl) => {
-  return <FormControl {...props}><textarea {...props.input} {...props}/></FormControl>
+  return <FormControl {...props}><TextField
+    inputProps={{
+      style: {
+        width: 500
+      }
+    }}
+    multiline
+    rows={2}
+    maxRows={Infinity}
+    {...props.input}
+    {...props}
+  /></FormControl>
 };
 
 export const InputArea = (props: FormsControl) => {
   return <FormControl {...props}><TextField
-     // sx={{width: '300px', height: '30px'}}
     inputProps={{
       style: {
         padding: 3
       }
     }}
-    // variant="standard"
-    // label={props.placeholder}
     {...props.input}
     {...props}
   /></FormControl>

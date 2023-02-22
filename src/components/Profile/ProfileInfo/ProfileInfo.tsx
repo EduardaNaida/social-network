@@ -50,24 +50,28 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
             <label htmlFor="file-input">
               <img src={profile.photos.large || avatar} alt="profile" className={style.avatar}/>
             </label>
-            {isOwner && <input id={'file-input'} type="file" onChange={onSelectedPhoto} style={{display: 'none'}}/>}
+            {isOwner && <input id='file-input' type="file" onChange={onSelectedPhoto} style={{display: 'none'}}/>}
           </div>
         </div>
         <div className={style.profileHeaderWrapper}>
-
         </div>
+
+        <div className={style.infoAboutUser}>
           <div className={style.name}>
             <div className={style.info}>
               {profile.fullName}
             </div>
+          </div>
+          <ProfileStatus status={status} updateStatus={updateStatus}/>
         </div>
+
         <div className={style.basicModal}>
-          <BasicModal profile={profile} onSubmit={onSubmit} status={status} updateStatus={updateStatus} callback={() => {
-            setEditMode(true)
-          }} isOwner={isOwner}
-          editMode={editMode}/>
+          <BasicModal profile={profile} onSubmit={onSubmit} status={status} updateStatus={updateStatus}
+                      callback={() => {
+                        setEditMode(true)
+                      }} isOwner={isOwner}
+                      editMode={editMode}/>
         </div>
-        <ProfileStatus status={status} updateStatus={updateStatus}/>
       </div>
     </div>
   );
