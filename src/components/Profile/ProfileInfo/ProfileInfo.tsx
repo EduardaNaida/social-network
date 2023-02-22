@@ -1,13 +1,10 @@
 import React, {ChangeEvent, FC, useState} from 'react';
-import s from "./ProfileInfo.module.css";
+import style from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloder";
-import {ProfileType, savePhoto} from "../../../redux/profileReducer";
+import {ProfileType} from "../../../redux/profileReducer";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import avatar from "../../../assets/images/avatar.png";
-import {ProfileData} from "./ProfileData/ProfileData";
-import {ProfileDataFormRedux} from "./ProfileData/ProfileDataForm/ProfileDataForm";
 import {ProfileRequestType} from "../../../api/api";
-import {EditModal} from "../../common/basicModal/editModal/editModal";
 import {BasicModal} from "../../common/basicModal/basicModal";
 
 type ProfileInfoType = {
@@ -43,28 +40,28 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
   }
 
   return (
-    <div className={s.profileHeader}>
-      <div className={s.backGroundImg}>
-        <div className={s.pageCover}></div>
+    <div className={style.profileHeader}>
+      <div className={style.backGroundImg}>
+        <div className={style.pageCover}></div>
       </div>
-      <div className={s.profileInfo}>
-        <div className={s.avatarWrapper}>
-          <div className={s.profileHeaderAva}>
+      <div className={style.profileInfo}>
+        <div className={style.avatarWrapper}>
+          <div className={style.profileHeaderAva}>
             <label htmlFor="file-input">
-              <img src={profile.photos.large || avatar} alt="profile" className={s.avatar}/>
+              <img src={profile.photos.large || avatar} alt="profile" className={style.avatar}/>
             </label>
             {isOwner && <input id={'file-input'} type="file" onChange={onSelectedPhoto} style={{display: 'none'}}/>}
           </div>
         </div>
-        <div className={s.profileHeaderWrapper}>
-          {/*{editMode ?*/}
-          {/*  <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/>*/}
-          {/*  :*/}
-          {/*  <ProfileData profile={profile} status={status} updateStatus={updateStatus} callback={() => {*/}
-          {/*    setEditMode(true)*/}
-          {/*  }} isOwner={isOwner}/>}*/}
+        <div className={style.profileHeaderWrapper}>
+
         </div>
-        <div className={s.basicModal}>
+          <div className={style.name}>
+            <div className={style.info}>
+              {profile.fullName}
+            </div>
+        </div>
+        <div className={style.basicModal}>
           <BasicModal profile={profile} onSubmit={onSubmit} status={status} updateStatus={updateStatus} callback={() => {
             setEditMode(true)
           }} isOwner={isOwner}

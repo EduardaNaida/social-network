@@ -35,7 +35,7 @@
     --profile-avatar-size: 150px;
 }
 
-.profileHeaderAva  {
+.profileHeaderAva {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -65,3 +65,14 @@
 .basicModal {
 
 }
+
+.name {
+    display: flex;
+    flex-direction: row;
+    color: #FFFFFF;
+}
+
+.info {
+    margin-left: 5px;
+}
+

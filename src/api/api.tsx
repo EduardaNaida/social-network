@@ -1,6 +1,5 @@
 import React from 'react';
 import axios, {AxiosResponse} from "axios";
-import {PhotosType} from "../redux/profileReducer";
 
 
 const instance = axios.create({

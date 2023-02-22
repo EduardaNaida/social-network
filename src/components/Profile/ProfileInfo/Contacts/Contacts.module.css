@@ -1,0 +1,24 @@
+.name {
+    display: flex;
+    margin: 8px 0 8px 0;
+    align-items: center;
+}
+
+.name div {
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+}
+
+.text {
+    width: 160px;
+    line-height: 16px;
+    float: left;
+    text-align: right;
+    /*font-weight: 500;*/
+}
+
+.field {
+    padding-left: 10px;
+    font-weight: 300;
+}

@@ -1,9 +1,10 @@
 .profileEditData {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /*align-items: flex-start;*/
     overflow: scroll;
     height: 620px;
+    /*margin-left: 30px;*/
 }
 
 .button {
@@ -47,4 +48,5 @@
 
 .contacts {
     font-weight: 600;
+    margin: 0 0 15px 40%;
 }

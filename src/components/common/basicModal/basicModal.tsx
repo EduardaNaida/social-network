@@ -6,6 +6,7 @@ import {ProfileDataFormRedux} from "../../Profile/ProfileInfo/ProfileData/Profil
 import {ProfileData} from "../../Profile/ProfileInfo/ProfileData/ProfileData";
 import {ProfileType} from "../../../redux/profileReducer";
 import {ProfileRequestType} from "../../../api/api";
+import styles from "./BasicModal.module.css"
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -13,11 +14,12 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 500,
-  bgcolor: 'background.paper',
+  // bgcolor: 'background.paper',
   border: '2px',
   borderRadius: '2px',
   boxShadow: 24,
   p: 2,
+  backgroundColor: '#ffffff',
 }
 
 type BasicModalType = {
@@ -37,7 +39,7 @@ export const BasicModal: FC<BasicModalType> = ({profile, status, updateStatus, i
 
   return (
     <>
-      <button onClick={handleOpen}>More</button>
+      <button onClick={handleOpen} className={styles.button}>More</button>
       <Modal
         open={open}
         onClose={handleClose}

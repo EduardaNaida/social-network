@@ -1,0 +1,51 @@
+.profileData {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /*overflow: scroll;*/
+    height: 620px;
+    margin-left: 10px;
+}
+
+.button {
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #3465d3;
+    border: none;
+    border-radius: 4px;
+    margin: 4px 0 4px 0;
+}
+
+.button:hover {
+    background-color: #3465d3;
+    color: #ffffff;
+}
+
+.name {
+    display: flex;
+    margin: 8px 0 8px 0;
+    align-items: center;
+}
+
+.profileData div {
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+}
+
+.text {
+    width: 160px;
+    line-height: 16px;
+    float: left;
+    text-align: right;
+}
+
+.field {
+    padding-left: 10px;
+    font-weight: 300;
+}
+
+.contacts {
+    font-weight: 600;
+    margin: 0 0 15px 40%;
+}
