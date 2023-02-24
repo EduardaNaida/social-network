@@ -33,7 +33,6 @@ export const TextArea = (props: FormsControl) => {
     }}
     multiline
     rows={2}
-    maxRows={Infinity}
     {...props.input}
     {...props}
   /></FormControl>

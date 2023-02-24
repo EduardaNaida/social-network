@@ -7,6 +7,9 @@
     /*margin-left: 30px;*/
 }
 
+.formControlError {
+    color: #9f0202;
+}
 .button {
     background-color: #ffffff;
     font-size: 16px;

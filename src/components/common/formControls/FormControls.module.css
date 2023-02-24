@@ -6,7 +6,7 @@
 
 .formControl.error input,
 .error textarea {
-    border: solid #a40202 1px;
+    border: solid #a40202 0;
 }
 
 .formControl.error span {
