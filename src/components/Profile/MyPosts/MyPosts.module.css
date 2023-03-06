@@ -13,7 +13,6 @@
     padding: 0;
     width: 400px;
 }
-
 .buttonBlock {
     display: flex;
     width: 528px;
@@ -35,4 +34,8 @@
 
 .button:hover {
     color: #3465d3;
+}
+
+.postsInfoBlock {
+    margin-top: 10px;
 }

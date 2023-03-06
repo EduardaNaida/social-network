@@ -16,15 +16,15 @@ const MyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={s.postsBlock}>
-      <div className={s.field}>
-        <Field placeholder={'Write your new post'}
-               name={'text'}
-               component={TextArea}
-               validate={[requiredLength]}/>
-      </div>
-      <div className={s.buttonBlock} >
-        <button className={s.button}>Add post</button>
-      </div>
+        <div className={s.field}>
+          <Field placeholder={'Write your new post'}
+                 name={'text'}
+                 component={TextArea}
+                 validate={[requiredLength]}/>
+        </div>
+        <div className={s.buttonBlock}>
+          <button className={s.button}>Add post</button>
+        </div>
       </div>
     </form>
   );
@@ -38,7 +38,13 @@ export const MyPosts = React.memo<ProfilePropsType>((props) => {
 
   let getPostData = props.profilePage.postData.map((ev, id) => {
     return (
-      <Post key={id} name={ev.name} message={ev.message} likes={ev.likes}/>
+      <div className={s.postsInfo}>
+        <Post key={id}
+              name={ev.name}
+              message={ev.message}
+              likes={ev.likes}
+              photos={props.profilePage.profile?.photos}/>
+      </div>
     )
   })
 
@@ -47,10 +53,14 @@ export const MyPosts = React.memo<ProfilePropsType>((props) => {
   }
 
   return (
-    <div className={s.posts}>
-      <h3>My posts</h3>
-      <PostReduxForm onSubmit={addPost}/>
-      {getPostData}
+    <div>
+      <div className={s.posts}>
+        <h3>My posts</h3>
+        <PostReduxForm onSubmit={addPost}/>
+      </div>
+      <div className={s.postsInfoBlock}>
+        {getPostData}
+      </div>
     </div>
   )
 });

@@ -61,7 +61,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostData = {
-        name: 'Alex',
+        name: 'Eduarda',
         message: action.postMessage,
         likes: '10',
       }

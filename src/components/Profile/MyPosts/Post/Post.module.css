@@ -1,8 +1,36 @@
-.profile {
-    grid-area: p;
-    background-color: rgba(48, 99, 199, 0.84);
+.postBlock {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 30px;
 }
 
-.item {
-    padding-top: 10px;
+.headerInfo {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    margin-left: 10px;
+    color: #2a5885;
+}
+
+.img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.contentInfo {
+    margin: 20px 10px 10px 10px;
+}
+
+.contentMessage {
+    margin-bottom: 10px;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    margin-left: -10px;
 }
