@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {maxLengthCreator, requiredField, requiredLength} from "../../utils/validators/validators";
 import {TextArea} from "../common/formControls/formControl";
 
 const maxLength =  maxLengthCreator(50);
@@ -57,7 +57,7 @@ const DialogsForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field placeholder={'Enter your message'}
                        component={TextArea}
                        name={'text'}
-                       validate={[requiredField, maxLength]}
+                       validate={[requiredLength]}
                 ></Field>
             </div>
             <div>
