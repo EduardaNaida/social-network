@@ -86,6 +86,11 @@ const Login = (props: LoginPropsType) => {
         <h2>Login page</h2>
         <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
       </div>
+      <div className={style.accountTest}>
+        <p>Use common test account credentials:</p>
+        <p>Email: free@samuraijs.com</p>
+        <p>Password: free</p>
+      </div>
     </div>
   );
 };

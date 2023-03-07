@@ -34,3 +34,10 @@
     align-items: center;
     justify-content: center;
 }
+
+.accountTest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+}
