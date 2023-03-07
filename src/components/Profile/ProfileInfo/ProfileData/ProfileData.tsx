@@ -14,7 +14,6 @@ type ProfileDataType = {
 
 
 export const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, updateStatus, status, callback}) => {
-  // console.log(profile.contacts)
   return (
     <div className={style.profileData}>
 

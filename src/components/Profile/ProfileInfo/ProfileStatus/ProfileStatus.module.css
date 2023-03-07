@@ -1,8 +1,29 @@
-.status{
-   margin-left: 10px;
+.status {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    cursor: inherit;
+    width: 500px;
 }
 
 .statusText {
     display: flex;
     color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px #7c8385 solid;
+    font-size: 14px;
+}
+
+.error {
+    display: flex;
+    color: #9f0202;
+    font-size: 14px;
 }

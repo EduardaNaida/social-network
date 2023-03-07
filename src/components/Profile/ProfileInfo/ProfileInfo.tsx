@@ -62,7 +62,7 @@ export const ProfileInfo: FC<ProfileInfoType> = ({profile, status, updateStatus,
               {profile.fullName}
             </div>
           </div>
-          <ProfileStatus status={status} updateStatus={updateStatus}/>
+          <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner}/>
         </div>
 
         <div className={style.basicModal}>
