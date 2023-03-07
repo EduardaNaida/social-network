@@ -46,6 +46,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: di
                 message: action.postMessage,
                 id: 10
             }
+
             return {
                 ...state,
                 newMessage: '',
@@ -67,6 +68,7 @@ export const AddMessage = (postMessage: string) => ({
         postMessage: postMessage
     } as const
 )
+
 export const NewMessage = (newText: string) => ({
         type: NEW_MESSAGE,
         newText: newText

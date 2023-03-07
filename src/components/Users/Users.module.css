@@ -1,0 +1,10 @@
+.paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.usersBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

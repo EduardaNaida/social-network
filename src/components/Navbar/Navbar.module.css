@@ -1,14 +1,21 @@
 .nav {
-    grid-area: n;
-    background-color: #8a71b6;
-    padding: 20px;
+    /*grid-area: n;*/
+    background-color: rgba(225, 227, 230, 0.60);
+    padding: 30px 20px 20px 20px;
 }
 
+.itemsBlock {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
 .item a {
     color: #000000;
     text-decoration: none;
 }
 
 .item a.active {
-    color: #c2bc47;
+    color: #4778c2;
 }

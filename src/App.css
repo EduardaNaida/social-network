@@ -13,5 +13,6 @@
 .app-wrapper-content{
     grid-area: p;
     background-color: rgba(225, 227, 230, 0.60);
+    padding-top: 30px;
 }
 
