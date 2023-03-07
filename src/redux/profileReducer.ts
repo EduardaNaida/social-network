@@ -61,7 +61,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostData = {
-        name: 'Eduarda',
+        name: action.fullName,
         message: action.postMessage,
         likes: '10',
       }
@@ -107,10 +107,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
   }
 };
 
-export const AddPostAC = (newTextValue: string) => {
+export const AddPostAC = (newTextValue: string, name: string) => {
+  debugger
   return {
     type: ADD_POST,
-    postMessage: newTextValue
+    postMessage: newTextValue,
+    fullName: name
   } as const
 }
 

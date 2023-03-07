@@ -9,10 +9,11 @@ import {AppStateType} from "../../../redux/reduxStore";
 type MapStatePropsType = {
   profilePage: ProfilePageType
   newTextValue: string
+  name?: string | null
 }
 
 type MapDispatchPropsType = {
-  addPostCallback: (newTextValue: string) => void
+  addPostCallback: (newTextValue: string, name: string) => void
 }
 
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
@@ -20,14 +21,15 @@ export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     profilePage: state.profilePage,
-    newTextValue: state.profilePage.newTextValue
+    newTextValue: state.profilePage.newTextValue,
+    name: state.profilePage.profile?.fullName
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   return {
-    addPostCallback: (newTextValue: string) => {
-      dispatch(AddPostAC(newTextValue));
+    addPostCallback: (newTextValue: string, name: string) => {
+      dispatch(AddPostAC(newTextValue, name));
     }
   }
 }

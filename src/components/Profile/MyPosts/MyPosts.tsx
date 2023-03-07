@@ -49,7 +49,7 @@ export const MyPosts = React.memo<ProfilePropsType>((props) => {
   })
 
   const addPost = (newTextValue: FormDataType) => {
-    props.addPostCallback(newTextValue.text);
+    props.addPostCallback(newTextValue.text, props.profilePage.profile?.fullName as string);
   }
 
   return (

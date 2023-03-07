@@ -8,7 +8,15 @@
 .headerInfo {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }
+
+.nameAndImage {
+    display: flex;
+    align-items: center;
+}
+
 
 .name {
     margin-left: 10px;
