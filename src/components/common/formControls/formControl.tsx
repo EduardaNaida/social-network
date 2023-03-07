@@ -42,7 +42,22 @@ export const InputArea = (props: FormsControl) => {
   return <FormControl {...props}><TextField
     inputProps={{
       style: {
-        padding: 3
+        padding: 3,
+        width: 180
+      }
+    }}
+    {...props.input}
+    {...props}
+  /></FormControl>
+};
+
+export const InputLogin = (props: FormsControl) => {
+  return <FormControl {...props}><TextField
+    inputProps={{
+      style: {
+        padding: 3,
+        width: 220,
+        height: 30
       }
     }}
     {...props.input}

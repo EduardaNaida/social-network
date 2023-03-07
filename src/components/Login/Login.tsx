@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {CheckBox, InputArea} from "../common/formControls/formControl";
+import {CheckBox, InputArea, InputLogin} from "../common/formControls/formControl";
 import {requiredField} from "../../utils/validators/validators";
 import {connect, useSelector} from "react-redux";
 import {login} from "../../redux/authReducer";
@@ -31,26 +31,25 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginCaptchaType> & Lo
   return (
     <form onSubmit={handleSubmit}>
       <div className={style.loginForm}>
-        <div>
+        <div className={style.field}>
           <Field placeholder={'Email'}
                  name={'email'}
-                 component={InputArea}
+                 component={InputLogin}
                  validate={[requiredField]}/>
         </div>
         <div>
           <Field placeholder={'Password'}
                  type={'password'}
                  name={'password'}
-                 component={InputArea}
+                 component={InputLogin}
                  validate={[requiredField]}/>
         </div>
         <div className={style.checkBox}>
           <Field component={CheckBox}
                  type={'checkbox'}
-                 name={'rememberMe'}
-                 validate={[requiredField]}/>
+                 name={'rememberMe'}/>
           <div>Remember me
-        </div>
+          </div>
         </div>
         <div>
           {error && <div className={styleError.formControlError}>{error}</div>}
@@ -82,9 +81,11 @@ const Login = (props: LoginPropsType) => {
   }
 
   return (
-    <div className={style.loginBlock}>
-      <h2>Login page</h2>
-      <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
+    <div className={style.loginBlockFirst}>
+      <div className={style.loginBlock}>
+        <h2>Login page</h2>
+        <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
+      </div>
     </div>
   );
 };
